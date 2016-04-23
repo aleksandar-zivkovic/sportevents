@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+    
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/viewEvents.css">
+
+        <title> View Events </title>
+
+</head>
+    <body>
+        <div>
+            <iframe src="http://localhost:4400/navBar.html" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" width="1000"></iframe>
+
+        </div>
+
+        <div class="selectSport">
+            <select class="info-item">
+                <option value="soccer">Soccer</option>
+                <option value="basketball">Basketball</option>
+                <option value="volleyball">Volleyball</option>
+            </select>
+        </div>
+
+        <div class="info">
+            <p class="info-item" id="eventName" class="event">Event Name: </p>
+            <p class="info-item" id="sport" class="event">Sport: </p>
+            <p class="info-item" id="players" class="event">Max Players: </p>
+            <p class="info-item" id="dateandtime" class="event">Date and Time: </p> 
+            <p class="info-item" id="geolocation" class="event">Event Location: </p>
+            <p class="info-item" id="photo" class="event">Photo of the Event: </p>
+
+            <button class="info-item" type="button" > Sign up! </button>
+        </div>
+    
+
+        <script type="text/javascript" src="scripts/viewEvents.js"></script>
+
+    </body>
+</html>
