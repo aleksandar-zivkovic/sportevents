@@ -15,7 +15,7 @@ document.getElementById('editEvent').addEventListener('touchend', function (ev) 
 });
 
 document.getElementById('viewUserlist').addEventListener('touchend', function (ev) {
-    window.parent.location.href = "http://localhost:3000/";
+    window.parent.location.href = "http://vasic.ddns.net/";
 });
 
 document.getElementById('logout').addEventListener('touchend', function (ev) {
