@@ -1,4 +1,10 @@
-﻿var backBtn = document.getElementById('back-btn');
+﻿function setTitle(text) {
+    var title = $("#action-bar-title-text");
+    if (title != null)
+        title.html(text);
+}
+
+var backBtn = document.getElementById('back-btn');
 if (backBtn != null) {
     backBtn.addEventListener('touchend', function (ev) {
         window.history.back();
