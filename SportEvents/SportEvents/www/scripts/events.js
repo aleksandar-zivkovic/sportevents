@@ -42,7 +42,7 @@ function processEvents(data) {
     for (var i = 0; i < eventsArray.length; i++) {
         var entry = document.createElement('li');
         var aEntry = document.createElement('a');
-        aEntry.setAttribute("href", "");
+        aEntry.setAttribute("href", "/event.html?id=" + eventsArray[i]._id);
         entry.appendChild(aEntry);
         aEntry.appendChild(document.createTextNode(eventsArray[i].title));
         list.appendChild(entry);
