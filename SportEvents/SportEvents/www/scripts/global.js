@@ -48,3 +48,10 @@ if (addEventBtn != null) {
         window.location = "addEvent.html";
     });
 }
+
+var logoutBtn = document.getElementById('logout-btn');
+if (logoutBtn != null) {
+    logoutBtn.addEventListener('touchend', function (ev) {
+        window.location = "login.html";
+    });
+}

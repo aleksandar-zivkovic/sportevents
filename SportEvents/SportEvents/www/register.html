@@ -1,58 +1,47 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
-    <head>
-
-        <link href="css/register.css" rel="stylesheet">
-
-        <link rel="stylesheet" type="text/css" href="addons/swal/sweetalert.css">
-
-        <script src="scripts/cookies.js"></script>
-
-        <script src="addons/swal/sweetalert.js"></script>
-
-        <title>Register</title>
-
-    </head>
-
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="addons/swal/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="scripts/cookies.js"></script>
+    <script src="addons/swal/sweetalert.js"></script>
+</head>
 <body>
-    <header class="navbar" role="banner">
-        <h1 style="text-align: center;"><b>Register</b></h1>
-    </header>
+    <div class="main-div">
+        <div class="action-bar" id="action-bar-div">
+            <script src="scripts/action-bar.js"></script>
+        </div>
 
-    <div class="login-container">
+    </div>
+
+    <div class="register-container">
 
         <div class="input-container">
+            <label class="white-text">Username</label>
             <input class="input" type="text" id="Username" name="Username" maxlength="50" required autofocus spellcheck="false">
-            <label class="label">Username</label>
-            <span style="color: red; font-size: 9px; padding: 0px;" id="Username_error" hidden> Username already in use, please choose different one.<span>
+            <span style="color: red; font-size: 9px; padding: 0px;" id="Username_error" hidden> Username already in use, please choose different one.></span>
         </div>
         <div class="input-container">
+            <label class="white-text">Password</label>
             <input class="input" type="password" id="Password" name="Password" required>
-            <label class="label">Password</label>
         </div>
         <div class="input-container">
+            <label class="white-text">Confirm Password</label>
             <input class="input" type="password" id="ConfirmPassword" name="ConfirmPassword" required>
-            <label class="label">Confirm Password</label>
         </div>
         <div class="input-container">
+            <label class="white-text">Email address</label>
             <input class="input" type="text" id="Email" name="Email" maxlength="50" required spellcheck="false">
-            <label class="label">Email address</label>
         </div>
         <input class="btn" type="submit" id="register" value="Register">
         <input class="btn" type="submit" id="login" value="Login">
     </div>
 
-    <footer id="footer" class="footer" style=" width 100%;height 100px;position absolute;bottom 0;left 0;">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    &copy; Copyright AM Team
-                </div>
-
-            </div>
-        </div>
-    </footer>
-
+    <script src="scripts/global.js"></script>
+    <script> setTitle("Register"); </script>
     <script src="scripts/register.js"></script>
 </body>
 </html>
