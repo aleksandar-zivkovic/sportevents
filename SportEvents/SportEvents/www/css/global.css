@@ -87,6 +87,7 @@
   font-family: Courier New;
   color: #ffffff;
   padding-bottom: 10%;
+  font-size: 20px;
 }
 
 .back-arrow {
@@ -138,6 +139,26 @@
 }
 
 .info {
+    align-content: center;
+    text-align: center;
+}
+
+.input {
+  border-radius: 15px;
+  font-family: Courier New;
+  font-size: 20px;
+  padding: 12px 20px 10px 20px;
+  text-decoration: none;
+  margin-bottom: 5%;
+  width: 75%;
+  display: inline-block;
+}
+
+.button-container {
+    padding: 180px 0px 0px 0px;
+}
+
+.register-container {
     align-content: center;
     text-align: center;
 }
