@@ -1,11 +1,11 @@
-﻿document.getElementById('testBtn').addEventListener('touchend', function (ev) {
+﻿document.getElementById('test-btn').addEventListener('touchend', function (ev) {
     var newUser = {
         "username": "test",
         "email": "test",
         "fullname": "test"
     };
 
-    var string = JSON.stringify(newUser);
+    var string = encodeURIComponent(JSON.stringify(newUser));
 
     //// Use AJAX to post the object to our adduser service
     //$.ajax({
