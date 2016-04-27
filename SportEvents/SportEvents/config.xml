@@ -3,7 +3,7 @@
   <name>SportEvents</name>
   <description>Hybrid Web app that covers Sport Events.</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">AM Team</author>
-  <content src="home.html" />
+  <content src="register.html" />
   <access origin="*" />
   <vs:features />
   <preference name="SplashScreen" value="screen" />
