@@ -31,3 +31,10 @@ if (profileBtn != null) {
         window.location = "profile.html";
     });
 }
+
+var addEventBtn = document.getElementById('addEvent-btn');
+if (addEventBtn != null) {
+    addEventBtn.addEventListener('touchend', function (ev) {
+        window.location = "addEvent.html";
+    });
+}

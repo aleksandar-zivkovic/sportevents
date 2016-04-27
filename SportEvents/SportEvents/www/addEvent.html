@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Event</title>
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+</head>
+<body>
+    <div class="main-div">
+        <div class="action-bar" id="action-bar-div">
+            <script src="scripts/action-bar.js"></script>
+        </div>
+    </div>
+
+    <div class="info">
+
+        <select class="info-item" id="sportInput">
+            <option value="soccer">Soccer</option>
+            <option value="basketball">Basketball</option>
+            <option value="volleyball">Volleyball</option>
+        </select>
+
+        <br>
+        <br>
+
+        <p class="info-item" id="eventTitle">Event Title: </p>
+        <input type="text" id="eventTitleInput" value=""><br>
+
+        <p class="info-item" id="eventDescription">Event Description: </p>
+        <input type="text" id="eventDescriptionInput" value=""><br>
+
+        <p class="info-item" id="dateAndTime">Date and Time: </p>
+        <input type="datetime-local" id="dateAndTimeInput"><br>
+
+        <p class="info-item" id="latitude">Latitude: </p>
+        <input type="text" id="latitudeInput" value=""><br>
+
+        <p class="info-item" id="longitude"> Longitude: </p>
+        <input type="text" id="longitudeInput" value=""><br> 
+
+        <br> 
+        <br>
+
+        <div class="btn" id="publish-btn">Publish Event</div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script> setTitle("Add Event"); </script>
+    <script type="text/javascript" src="scripts/addEvent.js"></script>
+</body>
+</html>

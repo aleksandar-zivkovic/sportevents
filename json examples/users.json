@@ -1,0 +1,26 @@
+{
+    "users":[
+        {
+            "username": "milan",
+            "hash": "milanhashhash",
+            "name": "Milan Vasic",
+            "gender": "Male",
+            "born": "1993"
+        },
+        {
+            "username": "aleksa",
+            "hash": "aleksahashhash",
+            "name": "Aleksa Zivkovic",
+            "gender": "Male",
+            "born": "1993"
+        },
+        {
+            "username": "petar",
+            "hash": "petarhashhash",
+            "name": "Petar Vasic",
+            "gender": "Male",
+            "born": "1993"
+        }
+    ]
+}
+

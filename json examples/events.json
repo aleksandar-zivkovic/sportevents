@@ -1,0 +1,28 @@
+{
+    "events":[
+        {
+            "title": "Fudbal",
+            "description": "This is event number 1.",
+            "sport": "Football",
+            "dateandtime": "21-03-2015-19:16:AM",
+            "latitude": "45.000052",
+            "longitude": "45.000052"
+        },
+        {
+           "title": "Basket",
+            "description": "This is event number 2.",
+            "sport": "Basketball",
+            "dateandtime": "21-03-2015-19:16:AM",
+            "latitude": "45.000052",
+            "longitude": "45.000052"
+        },
+        {
+            "title": "Fudbal2",
+            "description": "This is event number 3.",
+            "sport": "Football",
+            "dateandtime": "21-03-2015-19:16:AM",
+            "latitude": "45.000052",
+            "longitude": "45.000052"
+        }
+    ]
+}
