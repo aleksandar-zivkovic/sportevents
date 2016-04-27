@@ -8,24 +8,16 @@
 
 .selectSport {
     position: relative;
-    left: 50%;
-    top: 50%;
     height: 30px;
     width: 250px;
     text-align: center;
-    padding: 250px 0px 0px 0px;
-    margin: -125px;
 }
 
 .info {
     position: absolute;
-    left: 50%;
-    top: 50%;
     height: 30px;
     width: 250px;
     text-align: center;
-    padding: 0px 0px 0px 0px;
-    margin: -125px;
 }
 
 .info-item {

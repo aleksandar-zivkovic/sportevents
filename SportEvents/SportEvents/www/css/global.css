@@ -19,15 +19,6 @@
 .main-div {
     align-content: center;
     text-align: center;
-    background:
-    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
-    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
-    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
-    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
-    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
-    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
-    background-color: #131313;
-    background-size: 20px 20px;
 }
 
 .btn {
@@ -86,8 +77,15 @@
 .white-text {
   font-family: Courier New;
   color: #ffffff;
-  padding-bottom: 10%;
 }
+
+.text-size-20 { font-size: 20px; }
+.text-size-30 { font-size: 30px; }
+.text-size-35 { font-size: 35px; }
+.text-size-40 { font-size: 40px; }
+.text-size-45 { font-size: 45px; }
+
+.bottom-margin-20 { margin-bottom: 10px; }
 
 .back-arrow {
     border: solid currentColor;
@@ -114,6 +112,7 @@
     float: left;
     margin-left: 10px;
     font-size: 40px;
+    max-height: 45px;
     max-width: 90%;
     overflow: hidden;
 }
@@ -121,6 +120,7 @@
 .action-bar-title-small {
     margin-top: 5px;
     max-width: 70%;
+    max-height: 35px;
     font-size: 30px;
     overflow: hidden;
 }

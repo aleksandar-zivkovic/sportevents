@@ -12,40 +12,27 @@
         </div>
     </div>
 
-    <div class="info">
-
-        <select class="info-item" id="sportInput">
+    <div class="main-div">
+        <div class="white-text text-size-20" id="eventTitle">Sport: </div>
+        <select class="text-size-20 bottom-margin-10" id="sportInput">
             <option value="soccer">Soccer</option>
             <option value="basketball">Basketball</option>
             <option value="volleyball">Volleyball</option>
         </select>
-
-        <br>
-        <br>
-
-        <p class="info-item" id="eventTitle">Event Title: </p>
-        <input type="text" id="eventTitleInput" value=""><br>
-
-        <p class="info-item" id="eventDescription">Event Description: </p>
-        <input type="text" id="eventDescriptionInput" value=""><br>
-
-        <p class="info-item" id="dateAndTime">Date and Time: </p>
-        <input type="datetime-local" id="dateAndTimeInput"><br>
-
-        <p class="info-item" id="latitude">Latitude: </p>
-        <input type="text" id="latitudeInput" value=""><br>
-
-        <p class="info-item" id="longitude"> Longitude: </p>
-        <input type="text" id="longitudeInput" value=""><br> 
-
-        <br> 
-        <br>
-
-        <div class="btn" id="publish-btn">Publish Event</div>
+        <div class="white-text text-size-20" id="eventTitle">Event Title: </div>
+        <input class="text-size-20 bottom-margin-10" type="text" id="eventTitleInput" value=""><br>
+        <div class="white-text text-size-20" id="eventDescription">Event Description: </div>
+        <input class="text-size-20 bottom-margin-10" type="text" id="eventDescriptionInput" value=""><br>
+        <div class="white-text text-size-20" id="dateAndTime">Date and Time: </div>
+        <input class="text-size-20 bottom-margin-10" type="datetime-local" id="dateAndTimeInput"><br>
+        <div class="white-text text-size-20" id="latitude">Latitude: </div>
+        <input class="text-size-20 bottom-margin-10" type="text" id="latitudeInput" value=""><br>
+        <div class="white-text text-size-20" id="longitude"> Longitude: </div>
+        <input class="text-size-20 bottom-margin-10" type="text" id="longitudeInput" value=""><br>
+        <div class="btn text-size-35" id="publish-btn">Publish Event</div>
     </div>
 
     <script src="scripts/global.js"></script>
     <script> setTitle("Add Event"); </script>
-    <script type="text/javascript" src="scripts/addEvent.js"></script>
 </body>
 </html>
