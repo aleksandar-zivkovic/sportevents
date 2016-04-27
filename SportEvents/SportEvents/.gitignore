@@ -4,3 +4,9 @@
 [Pp]lugins/wp8.json
 [Pp]lugins/remote_ios.json
 [Pp]latforms/
+
+SportEvents/SportEvents/SportEvents.jsproj.user
+SportEvents/.vs/SportEvents/v14/.suo
+SportEvents/.vs/SportEvents/v14/.suo
+*.apk
+*.user
