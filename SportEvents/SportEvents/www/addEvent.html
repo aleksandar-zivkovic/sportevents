@@ -10,26 +10,28 @@
         <div class="action-bar" id="action-bar-div">
             <script src="scripts/action-bar.js"></script>
         </div>
-    </div>
 
-    <div class="main-div">
         <div class="white-text text-size-20" id="eventTitle">Sport: </div>
-        <select class="text-size-20 bottom-margin-10" id="sportInput">
+        <select class="input text-size-20 bottom-margin-10 center-text" id="sportInput">
             <option value="soccer">Soccer</option>
             <option value="basketball">Basketball</option>
             <option value="volleyball">Volleyball</option>
         </select>
         <div class="white-text text-size-20" id="eventTitle">Event Title: </div>
-        <input class="text-size-20 bottom-margin-10" type="text" id="eventTitleInput" value=""><br>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="text" id="eventTitleInput" value="">
         <div class="white-text text-size-20" id="eventDescription">Event Description: </div>
-        <input class="text-size-20 bottom-margin-10" type="text" id="eventDescriptionInput" value=""><br>
+        <textarea class="input text-size-20 bottom-margin-10 center-text" rows="5" type="text" id="eventDescriptionInput" value=""></textarea>
         <div class="white-text text-size-20" id="dateAndTime">Date and Time: </div>
-        <input class="text-size-20 bottom-margin-10" type="datetime-local" id="dateAndTimeInput"><br>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="datetime-local" id="dateAndTimeInput">
+        <div class="white-text text-size-20" id="dateAndTime">Duration (min): </div>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="number" id="durationInput">
         <div class="white-text text-size-20" id="latitude">Latitude: </div>
-        <input class="text-size-20 bottom-margin-10" type="text" id="latitudeInput" value=""><br>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="text" id="latitudeInput" value="">
         <div class="white-text text-size-20" id="longitude"> Longitude: </div>
-        <input class="text-size-20 bottom-margin-10" type="text" id="longitudeInput" value=""><br>
-        <div class="btn text-size-35" id="publish-btn">Publish Event</div>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="text" id="longitudeInput" value="">
+        <div class="button-container">
+            <input class="btn text-size-30" type="submit" id="publish-btn" value="Publish event" />
+        </div>
     </div>
 
     <script src="scripts/global.js"></script>

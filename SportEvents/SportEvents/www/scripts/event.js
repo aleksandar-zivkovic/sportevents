@@ -16,4 +16,12 @@ function parseEvent(data) {
     event = JSON.parse(data);
 
     setTitle(event.title);
+
+    $("#sportInput").val(event.sport);
+    $("#eventTitleInput").val(event.title);
+    $("#eventDescriptionInput").val(event.description);
+    $("#dateAndTimeInput").val(event.dateandtime);
+    $("#durationInput").val(event.duration);
+    $("#latitudeInput").val(event.latitude);
+    $("#longitudeInput").val(event.longitude);
 }

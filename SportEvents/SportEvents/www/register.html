@@ -22,7 +22,7 @@
         <div class="input-container">
             <label class="white-text">Username</label>
             <input class="input" type="text" id="Username" name="Username" maxlength="50" required autofocus spellcheck="false">
-            <span style="color: red; font-size: 9px; padding: 0px;" id="Username_error" hidden> Username already in use, please choose different one.></span>
+            <div style="color: red; font-size: 9px; padding: 0px; position: absolute; margin-top: -30px; margin-left: 50px;" id="Username_error" hidden>Username already in use, please choose different one.</div>
         </div>
         <div class="input-container">
             <label class="white-text">Password</label>
@@ -36,8 +36,8 @@
             <label class="white-text">Email address</label>
             <input class="input" type="text" id="Email" name="Email" maxlength="50" required spellcheck="false">
         </div>
-        <input class="btn" type="submit" id="register" value="Register">
-        <input class="btn" type="submit" id="login" value="Login">
+        <input class="btn" type="submit" id="register-btn" value="Register">
+        <input class="btn" type="submit" id="login-btn" value="Login">
     </div>
 
     <script src="scripts/global.js"></script>

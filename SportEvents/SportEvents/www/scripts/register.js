@@ -1,7 +1,10 @@
-﻿document.getElementById('login').addEventListener('touchend', function (ev) {
-    window.location.href = "http://localhost:4400/login.html";
+﻿document.getElementById('login-btn').addEventListener('touchend', function (ev) {
+    window.location.href = "login.html";
 });
 
-document.getElementById('register').addEventListener('touchend', function (ev) {
-    window.location.href = "http://localhost:4400/home.html";
+var registerBtn = document.getElementById('register-btn');
+registerBtn.addEventListener('touchend', function (ev) {
+    window.location.href = "home.html";
 });
+
+document.getElementById('action-bar-home-btn').style.display = 'none';

@@ -8,17 +8,17 @@ document.getElementById('publish-btn').addEventListener('touchend', function (ev
     var sport = e.options[e.selectedIndex].text;
 
     var dateAndTime = document.getElementById("dateAndTimeInput").value;
+    var duration = document.getElementById("durationInput").value;
 
     var latitude = document.getElementById('latitudeInput').value;
     var longitude = document.getElementById('longitudeInput').value;
-
-
 
     var newEvent = {
         "title": title,
         "description": description,
         "sport": sport,
         "dateandtime": dateAndTime,
+        "duration": duration,
         "latitude": latitude,
         "longitude": longitude
     };
@@ -38,4 +38,3 @@ document.getElementById('publish-btn').addEventListener('touchend', function (ev
         }
     });
 });
-

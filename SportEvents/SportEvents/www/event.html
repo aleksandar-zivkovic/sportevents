@@ -11,6 +11,27 @@
             <script src="scripts/action-bar.js"></script>
         </div>
 
+        <div class="white-text text-size-20" id="eventTitle">Sport: </div>
+        <select class="input text-size-20 bottom-margin-10 center-text" id="sportInput" readonly>
+            <option value="soccer">Soccer</option>
+            <option value="basketball">Basketball</option>
+            <option value="volleyball">Volleyball</option>
+        </select>
+        <div class="white-text text-size-20" id="eventTitle">Event Title: </div>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="text" id="eventTitleInput" value="" readonly>
+        <div class="white-text text-size-20" id="eventDescription">Event Description: </div>
+        <textarea class="input text-size-20 bottom-margin-10 center-text" rows="5" type="text" id="eventDescriptionInput" value="" readonly></textarea>
+        <div class="white-text text-size-20" id="dateAndTime">Date and Time: </div>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="datetime-local" id="dateAndTimeInput" readonly>
+        <div class="white-text text-size-20" id="dateAndTime">Duration (min): </div>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="number" id="durationInput" readonly>
+        <div class="white-text text-size-20" id="latitude">Latitude: </div>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="text" id="latitudeInput" value="" readonly>
+        <div class="white-text text-size-20" id="longitude"> Longitude: </div>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="text" id="longitudeInput" value="" readonly>
+        <div class="button-container">
+            <input class="btn text-size-25" type="submit" id="attend-btn" value="Attend to event" />
+        </div>
     </div>
 
     <script src="scripts/global.js"></script>
