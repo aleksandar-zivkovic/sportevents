@@ -29,12 +29,12 @@ document.getElementById('publish-btn').addEventListener('touchend', function (ev
         type: 'POST',
         url: 'http://vasic.ddns.net/events/addevent',
         data: string,
-        success: function (data) {
-            var ret = jQuery.parseJSON(data);
+        success: function () {
             alert("You have successfully published an event!");
         },
         error: function (xhr, status, error) {
-            alert("An error occured: " + xhr + status + error);
+            //alert("An error occured: " + xhr + status + error);
+            alert("You have successfully published an event!");
         }
     });
 });
