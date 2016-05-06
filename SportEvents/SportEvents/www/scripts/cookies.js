@@ -1,4 +1,5 @@
-﻿function setCookie(cname, cvalue, exminutes) {
+﻿// setCookie("user", username, 30);
+function setCookie(cname, cvalue, exminutes) {
     var d = new Date();
     d.setTime(d.getTime() + (exminutes * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
@@ -17,9 +18,9 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-    var korisnik = getCookie("korisnik");
-    if (korisnik != "") {
-        document.getElementById("autor").value = korisnik;
+    var user = getCookie("user");
+    if (user != "") {
+        document.getElementById("user").value = user;
     }
     else {
         window.location.replace("login.html");

@@ -1,21 +1,25 @@
-﻿document.getElementById('test-btn').addEventListener('touchend', function (ev) {
-    var newUser = {
-        "username": "test",
-        "email": "test",
-        "fullname": "test"
-    };
+﻿var canvas = document.getElementById('map');
+var ctx = canvas.getContext("2d");
 
-    var string = encodeURIComponent(newUser);
+var image = new Image();
+image.onload = function () {
+    window.onresize = fitToContainer;
+    fitToContainer();
+};
+image.src = "http://www.allsportsevents.com/Images/ASEIcon.png";
 
-    $.ajax({
-        type: 'POST',
-        url: 'http://vasic.ddns.net/users/adduser',
-        data: string,
-        success: function (data) {
-            var ret = jQuery.parseJSON(data);
-        },
-        error: function (xhr, status, error) {
-            console.log('Error: ' + error.message);
-        }
-    });
-});
+function fitToContainer() {
+
+    var div = $('#mapcontext'),
+        w = div.width(),
+        h = div.height();
+
+    canvas.width = w;
+    canvas.height = h;
+
+    ctx.drawImage(image, 0, 0, w, h);
+}
+
+checkCookie();
+
+$("#logout-btn").val("Logout [" + getCookie("user") + "]");
