@@ -7,7 +7,7 @@ $.ajax({
     data: "id=" + getParameterByName("id", window.location),
     success: parseEvent,
     error: function (xhr, status, error) {
-        alert(error.message);
+        swal("Error!", error, "error");
     }
 });
 
