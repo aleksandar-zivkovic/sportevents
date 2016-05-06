@@ -3,7 +3,7 @@ title.className += " action-bar-title-small";
 
 $.ajax({
     type: 'GET',
-    url: 'http://vasic.ddns.net/events/getuserbyid',
+    url: 'http://vasic.ddns.net/users/getuserbyid',
     data: "id=" + getParameterByName("id", window.location),
     success: parseUser,
     error: function (xhr, status, error) {

@@ -25,7 +25,7 @@ function loadEvents() {
     //load data from NodeJS and mongoDB database
     $.ajax({
         type: 'GET',
-        url: 'http://vasic.ddns.net/users/getevents',
+        url: 'http://vasic.ddns.net/events/getevents',
         data: "",
         success: processEvents,
         error: function (xhr, status, error) {

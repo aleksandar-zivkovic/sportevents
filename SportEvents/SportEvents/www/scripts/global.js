@@ -52,6 +52,8 @@ if (addEventBtn != null) {
 var logoutBtn = document.getElementById('logout-btn');
 if (logoutBtn != null) {
     logoutBtn.addEventListener('touchend', function (ev) {
-        window.location = "login.html";
+        //window.location = "login.html";
+        setCookie("user", "", 30);
+        location.reload();
     });
 }

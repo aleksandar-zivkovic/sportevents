@@ -4,11 +4,18 @@
     <title>Sport events</title>
     <link rel="stylesheet" type="text/css" href="css/global.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="scripts/cookies.js"></script>
 </head>
 <body>
-    <div class="main-div">
+    <div class="main-div">=
         <div class="action-bar">
-            <div class="action-bar-title">Sport events</div>
+
+            <span id="mapcontext" class="cont" data-role="context">
+                <canvas id="map"></canvas>
+            </span>
+
+            <span class="action-bar-title"> Sport events</span>
+
         </div>
 
         <div class="button-container">
@@ -18,9 +25,13 @@
             <input class="btn" type="submit" id="addEvent-btn" value="Add event">
             <input class="btn" type="submit" id="logout-btn" value="Logout">
         </div>
-        <div class="white-text margin-bottom-20 margin-side-20">Sport Events is an application which helps you host, organize and manage sport events around you!</div>
+        <div class="white-text margin-bottom-20 margin-side-20" id="user" value=""></div>
+
+
+
     </div>
 
     <script type="text/javascript" src="scripts/global.js"></script>
+    <script type="text/javascript" src="scripts/home.js"></script>
 </body>
 </html>
