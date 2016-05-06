@@ -67,11 +67,21 @@ function showCurrentLocation(position) {
     document.getElementById("map"), mapOptions
     );
 
+    //remove map type buttons
+    map.mapTypeControl = false;
+    //map.streetView = false;
+
     //place the initial marker
     var marker = new google.maps.Marker({
         position: coords,
         map: map,
-        title: "Current location!"
+        title: "This is your location!"
+    }, function (marker) {
+        marker.showInfoWindow();
+    });
+
+    marker.addEventListener(plugin.google.maps.event.MARKER_CLICK, function () {
+        marker.showInfoWindow();
     });
 
     google.maps.event.addListener(map, 'click', function (event) {
@@ -82,6 +92,14 @@ function showCurrentLocation(position) {
         var lng = myLatLng.lng();
         $("#latitudeInput").val(lat);
         $("#longitudeInput").val(lng);
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lon),
+            map: map,
+            title: "This is event location!"
+        }, function (marker) {
+            marker.showInfoWindow();
+        });
     });
 }
 

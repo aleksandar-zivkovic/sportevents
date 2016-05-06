@@ -17,9 +17,10 @@
 }
 
 .map {
-    height: 300px;
-    width: 300px;
-    margin: 30px;
+    height: 40%;
+    min-height: 300px;
+    width: 90%;
+    margin: 4%;
     padding: 0px;
     border: 5px solid #3872ac;
 }
@@ -33,8 +34,9 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    width: 100%;
-    display:inline-block;
+    width: 10%;
+    display:inline-block;    
+    float: left;
 }
 
 .btn {
