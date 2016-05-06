@@ -38,3 +38,55 @@ document.getElementById('publish-btn').addEventListener('touchend', function (ev
         }
     });
 });
+
+// ---------------------------------------------------------
+//                                                  MAP PART
+// ---------------------------------------------------------
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showCurrentLocation);
+}
+else {
+    alert("Geolocation API not supported.");
+}
+
+function showCurrentLocation(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    var coords = new google.maps.LatLng(latitude, longitude);
+
+    var mapOptions = {
+        zoom: 15,
+        center: coords,
+        mapTypeControl: true,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    //create the map, and place it in the HTML map div
+    map = new google.maps.Map(
+    document.getElementById("map"), mapOptions
+    );
+
+    //place the initial marker
+    var marker = new google.maps.Marker({
+        position: coords,
+        map: map,
+        title: "Current location!"
+    });
+
+    google.maps.event.addListener(map, 'click', function (event) {
+
+        //swal("Success!", event.latLng, "success");
+        var myLatLng = event.latLng;
+        var lat = myLatLng.lat();
+        var lng = myLatLng.lng();
+        $("#latitudeInput").val(lat);
+        $("#longitudeInput").val(lng);
+    });
+}
+
+
+
+//google.maps.event.addDomListener(window, 'load', initialize);
+
+

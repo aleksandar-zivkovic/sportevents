@@ -22,4 +22,6 @@ function fitToContainer() {
 
 checkCookie();
 
-$("#logout-btn").val("Logout [" + getCookie("user") + "]");
+//$("#logout-btn").val("Logout [" + getCookie("user") + "]");
+
+$("#logout-btn").val("Logout");
