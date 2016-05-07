@@ -91,7 +91,8 @@ function showCurrentLocation(position) {
     //});
 
     google.maps.event.addListener(map, 'click', function (event) {
-        marker.remove = true;
+        //removing previous marker
+        marker.setMap(null);
 
         //swal("Success!", event.latLng, "success");
         var myLatLng = event.latLng;

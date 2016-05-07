@@ -116,10 +116,12 @@ function showEventsOnMap() {
             eventsArray = JSON.parse(data);
 
             for (var i = 0; i < eventsArray.length; i++) {
+                var image = '/../images/markers/' + eventsArray[i].sport + '.png';
                 var coords = new google.maps.LatLng(eventsArray[i].latitude, eventsArray[i].longitude);
                 var marker = new google.maps.Marker({
                     position: coords,
                     map: map,
+                    icon: image,
                     title: eventsArray[i].title
                 });
             }

@@ -25,7 +25,8 @@
 }
 
 .map-fullscreen {
-    height: 80%;
+    height: 80%;    
+    min-height: 500px;
     width: 94%;
     padding: 0px;
     margin-left: 2%;
@@ -35,9 +36,6 @@
 .main-div {
     align-content: center;
     text-align: center;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
 }
 
 .cont {
