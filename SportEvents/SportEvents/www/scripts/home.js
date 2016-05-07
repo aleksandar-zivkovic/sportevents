@@ -6,7 +6,7 @@ image.onload = function () {
     window.onresize = fitToContainer;
     fitToContainer();
 };
-image.src = "../images/logo.png";
+image.src = "../images/Logo.png";
 
 function fitToContainer() {
 

@@ -33,6 +33,10 @@
     border: 4px solid #3872ac;
 }
 
+.hidden {
+    display: none;
+}
+
 .main-div {
     align-content: center;
     text-align: center;

@@ -18,6 +18,7 @@ function parseEvent(data) {
 
     setTitle(event.title);
 
+    $("#eventId").val(event._id);
     $("#sportInput").val(event.sport);
     $("#eventTitleInput").val(event.title);
     $("#eventDescriptionInput").val(event.description);
@@ -25,6 +26,13 @@ function parseEvent(data) {
     $("#durationInput").val(event.duration);
     //$("#latitudeInput").val(event.latitude);
     //$("#longitudeInput").val(event.longitude);
+
+    var editBtn = document.getElementById('edit-btn');
+    var user = getCookie('user');
+    if (user === event.createdBy)
+        editBtn.style.visibility = 'visible';
+    else
+        editBtn.style.visibility = 'hidden';
 
     ReverseGeocode(event.latitude, event.longitude)
 
@@ -43,10 +51,12 @@ function parseEvent(data) {
     document.getElementById("map"), mapOptions
     );
 
+    var image = '../images/markers/' + event.sport.toLowerCase() + '.png';
     //place the initial marker
     var marker = new google.maps.Marker({
         position: coords,
         map: map,
+        icon: image,
         title: "Event location!"
     });
 }
@@ -72,10 +82,10 @@ else {
 //}
 
 
-document.getElementById('attend-btn').addEventListener('touchend', function (ev) {
+//document.getElementById('attend-btn').addEventListener('touchend', function (ev) {
 
-    var title = $("#eventTitleInput").val();
+//    var title = $("#eventTitleInput").val();
 
-    alert("You have successfully attended this event!");
-    //swal("Success!", "You have successfully attended this event!", "success");
-});
+//    alert("You have successfully attended this event!");
+//    //swal("Success!", "You have successfully attended this event!", "success");
+//});

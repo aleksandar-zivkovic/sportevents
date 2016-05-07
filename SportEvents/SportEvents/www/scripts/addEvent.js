@@ -28,7 +28,8 @@ document.getElementById('publish-btn').addEventListener('touchend', function (ev
         "dateandtime": dateAndTime,
         "duration": duration,
         "latitude": latitude,
-        "longitude": longitude
+        "longitude": longitude,
+        "createdBy": getCookie('user') 
     };
 
     var string = encodeURIComponent(JSON.stringify(newEvent));
@@ -74,13 +75,25 @@ function showCurrentLocation(position) {
 
     //create the map, and place it in the HTML map div
     map = new google.maps.Map(
-    document.getElementById("map"), mapOptions
+        document.getElementById("map"), mapOptions
     );
+
+    //show current location
+    var image = '../images/markers/currentlocation.png';
+    var currentLocationMarker = new google.maps.Marker({
+        position: coords,
+        map: map,
+        icon: image,
+        title: "Current location"
+    });
+
+    currentLocationMarker.addListener('click', function () {
+        window.location = "profile.html";
+    });
 
     //place the initial marker
     marker = new google.maps.Marker({
         position: coords,
-        map: map,
         title: "This is your location!"
     }, function (marker) {
         marker.showInfoWindow();

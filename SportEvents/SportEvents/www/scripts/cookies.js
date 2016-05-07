@@ -1,6 +1,6 @@
 ﻿// setCookie("user", username, 30);
 function setCookie(cname, cvalue, exminutes) {
-    window.localStorage.setItem('username', cvalue);
+    window.localStorage.setItem(cname, cvalue);
 
     //var d = new Date();
     //d.setTime(d.getTime() + (exminutes * 60 * 1000));
@@ -9,7 +9,7 @@ function setCookie(cname, cvalue, exminutes) {
 }
 
 function getCookie(cname) {
-    return window.localStorage.getItem('username');
+    return window.localStorage.getItem(cname);
 
     //var name = cname + "=";
     //var ca = document.cookie.split(';');
@@ -23,7 +23,7 @@ function getCookie(cname) {
 
 function checkCookie() {
     //var user = getCookie("user");
-    var user = window.localStorage.getItem('username');
+    var user = window.localStorage.getItem('user');
     if (user != "") {
         document.getElementById("user").value = user;
     }

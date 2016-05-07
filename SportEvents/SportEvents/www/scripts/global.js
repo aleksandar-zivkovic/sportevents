@@ -58,6 +58,56 @@ if (logoutBtn != null) {
     });
 }
 
+var editBtn = document.getElementById('edit-btn');
+if (editBtn != null) {
+    editBtn.addEventListener('touchend', function (ev) {
+        var value = editBtn.value;
+        if (value == "Edit event") {
+            $("#edit-btn").val("Save event");
+            $("#eventTitleInput").attr('readonly', false);
+            $("#eventDescriptionInput").attr('readonly', false);
+            $("#dateAndTimeInput").attr('readonly', false);
+            $("#durationInput").attr('readonly', false);
+        }
+        else {
+            $("#edit-btn").val("Edit event");
+            $("#eventTitleInput").attr('readonly', true);
+            $("#eventDescriptionInput").attr('readonly', true);
+            $("#dateAndTimeInput").attr('readonly', true);
+            $("#durationInput").attr('readonly', true);
+            
+            var id = document.getElementById('eventId').value;
+            var title = document.getElementById('eventTitleInput').value;
+            var description = document.getElementById('eventDescriptionInput').value;
+            var dateAndTime = document.getElementById("dateAndTimeInput").value;
+            var duration = document.getElementById("durationInput").value;
+
+            var newEvent = {
+                "id": id,
+                "title": title,
+                "description": description,
+                "dateandtime": dateAndTime,
+                "duration": duration
+            };
+
+            var string = encodeURIComponent(JSON.stringify(newEvent));
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://vasic.ddns.net/events/updateevent',
+                data: string,
+                success: function () {
+                    alert("You have successfully updated an event!");
+                },
+                error: function (xhr, status, error) {
+                    //alert("An error occured: " + xhr + status + error);
+                    alert("You have successfully updated an event!");
+                }
+            });
+        }
+    });
+}
+
 function ReverseGeocode(latitude, longitude) {
     var reverseGeocoder = new google.maps.Geocoder();
     var currentPosition = new google.maps.LatLng(latitude, longitude);
@@ -95,10 +145,8 @@ function showEventsOnMap() {
 
         //create the map, and place it in the HTML map div
         map = new google.maps.Map(
-        document.getElementById("map"), mapOptions
+            document.getElementById("map"), mapOptions
         );
-
-        var eventsArray;
 
         //load data from NodeJS and mongoDB database
         $.ajax({
@@ -111,12 +159,14 @@ function showEventsOnMap() {
             }
         });
 
+        var eventsArray;
+
         function processEvents(data) {
             //parse JSON data
             eventsArray = JSON.parse(data);
 
             for (var i = 0; i < eventsArray.length; i++) {
-                var image = '/../images/markers/' + eventsArray[i].sport + '.png';
+                var image = '../images/markers/' + eventsArray[i].sport.toLowerCase() + '.png';
                 var coords = new google.maps.LatLng(eventsArray[i].latitude, eventsArray[i].longitude);
                 var marker = new google.maps.Marker({
                     position: coords,
@@ -124,7 +174,46 @@ function showEventsOnMap() {
                     icon: image,
                     title: eventsArray[i].title
                 });
+
+                marker.id = eventsArray[i]._id;
+
+                marker.addListener('click', function () {
+                    window.location = "event.html?id=" + this.id;
+                });
             }
         }
+    });
+}
+
+function showCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var coords = new google.maps.LatLng(latitude, longitude);
+
+        var mapOptions = {
+            zoom: 15,
+            center: coords,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        //create the map, and place it in the HTML map div
+        map = new google.maps.Map(
+            document.getElementById("map"), mapOptions
+        );
+
+        //show current location
+        var image = '../images/markers/currentlocation.png';
+        var currentLocationMarker = new google.maps.Marker({
+            position: coords,
+            map: map,
+            icon: image,
+            title: "Current location"
+        });
+
+        currentLocationMarker.addListener('click', function () {
+            window.location = "profile.html";
+        });
     });
 }
