@@ -54,7 +54,16 @@ if (logoutBtn != null) {
     logoutBtn.addEventListener('touchend', function (ev) {
         //window.location = "login.html";
         setCookie("user", "", 30);
-        location.reload();
+        //location.reload();
+
+        swal({
+            title: "Success!",
+            text: "Successfully loged out.",
+            timer: 5000,
+            type: "success"
+        }, function () {
+            window.location = "login.html";
+        });
     });
 }
 
@@ -166,7 +175,7 @@ function showEventsOnMap() {
             eventsArray = JSON.parse(data);
 
             for (var i = 0; i < eventsArray.length; i++) {
-                var image = 'images/markers/' + eventsArray[i].sport.toLowerCase() + '.png';
+                var image = 'images/' + eventsArray[i].sport.toLowerCase() + '.png';
                 var coords = new google.maps.LatLng(eventsArray[i].latitude, eventsArray[i].longitude);
                 var marker = new google.maps.Marker({
                     position: coords,
@@ -204,7 +213,7 @@ function showCurrentLocation() {
         );
 
         //show current location
-        var image = 'images/markers/currentlocation.png';
+        var image = 'images/currentlocation.png';
         var currentLocationMarker = new google.maps.Marker({
             position: coords,
             map: map,

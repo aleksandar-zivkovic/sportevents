@@ -13,13 +13,13 @@ document.getElementById('publish-btn').addEventListener('touchend', function (ev
     var latitude = document.getElementById('latitudeInput').value;
     var longitude = document.getElementById('longitudeInput').value;
 
-    $.ajax({
-        type: 'GET',
-        url: 'http://vasic.ddns.net/events/verify',
-        data: "title=" + title,
-        success: $('#title_error').hide(),
-        error: $('#title_error').show()
-    });
+    //$.ajax({
+    //    type: 'GET',
+    //    url: 'http://vasic.ddns.net/events/verify',
+    //    data: "title=" + title,
+    //    success: $('#title_error').hide(),
+    //    error: $('#title_error').show()
+    //});
 
     var newEvent = {
         "title": title,
@@ -79,7 +79,7 @@ function showCurrentLocation(position) {
     );
 
     //show current location
-    var image = 'images/markers/currentlocation.png';
+    var image = 'images/currentlocation.png';
     var currentLocationMarker = new google.maps.Marker({
         position: coords,
         map: map,

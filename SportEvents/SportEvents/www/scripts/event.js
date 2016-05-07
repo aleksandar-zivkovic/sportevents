@@ -51,7 +51,7 @@ function parseEvent(data) {
     document.getElementById("map"), mapOptions
     );
 
-    var image = 'images/markers/' + event.sport.toLowerCase() + '.png';
+    var image = 'images/' + event.sport.toLowerCase() + '.png';
     //place the initial marker
     var marker = new google.maps.Marker({
         position: coords,
@@ -66,7 +66,7 @@ function parseEvent(data) {
         var coords = new google.maps.LatLng(latitude, longitude);
 
         //show current location
-        var image = 'images/markers/currentlocation.png';
+        var image = 'images/currentlocation.png';
         var currentLocationMarker = new google.maps.Marker({
             position: coords,
             map: map,
