@@ -6,7 +6,7 @@ image.onload = function () {
     window.onresize = fitToContainer;
     fitToContainer();
 };
-image.src = "http://www.allsportsevents.com/Images/ASEIcon.png";
+image.src = "../Images/logo.png";
 
 function fitToContainer() {
 

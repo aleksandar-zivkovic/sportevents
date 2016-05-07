@@ -22,8 +22,10 @@ function parseEvent(data) {
     $("#eventDescriptionInput").val(event.description);
     $("#dateAndTimeInput").val(event.dateandtime);
     $("#durationInput").val(event.duration);
-    $("#latitudeInput").val(event.latitude);
-    $("#longitudeInput").val(event.longitude);
+    //$("#latitudeInput").val(event.latitude);
+    //$("#longitudeInput").val(event.longitude);
+
+    ReverseGeocode(event.latitude, event.longitude)
 
     // set event marker on map
     var coords = new google.maps.LatLng(event.latitude, event.longitude);
@@ -31,7 +33,7 @@ function parseEvent(data) {
     var mapOptions = {
         zoom: 15,
         center: coords,
-        mapTypeControl: true,
+        mapTypeControl: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
@@ -53,36 +55,16 @@ function parseEvent(data) {
 // ---------------------------------------------------------
 
 if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showCurrentLocation);
+    //navigator.geolocation.getCurrentPosition(reverseGeocodeCurrentLocation);
 }
 else {
     alert("Geolocation API not supported.");
 }
 
-//function showCurrentLocation(position) {
+//function reverseGeocodeCurrentLocation(position) {
 //    var latitude = position.coords.latitude;
 //    var longitude = position.coords.longitude;
 //    var coords = new google.maps.LatLng(latitude, longitude);
 
-//    var mapOptions = {
-//        zoom: 15,
-//        center: coords,
-//        mapTypeControl: true,
-//        mapTypeId: google.maps.MapTypeId.ROADMAP
-//    };
-
-//    //create the map, and place it in the HTML map div
-//    map = new google.maps.Map(
-//    document.getElementById("map"), mapOptions
-//    );
-
-//    //google.maps.event.addListener(map, 'click', function (event) {
-
-//    //    //swal("Success!", event.latLng, "success");
-//    //    var myLatLng = event.latLng;
-//    //    var lat = myLatLng.lat();
-//    //    var lng = myLatLng.lng();
-//    //    $("#latitudeInput").val(lat);
-//    //    $("#longitudeInput").val(lng);
-//    //});
+//    ReverseGeocode(latitude, longitude);
 //}

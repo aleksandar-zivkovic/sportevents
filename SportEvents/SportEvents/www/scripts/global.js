@@ -57,3 +57,72 @@ if (logoutBtn != null) {
         location.reload();
     });
 }
+
+function ReverseGeocode(latitude, longitude) {
+    var reverseGeocoder = new google.maps.Geocoder();
+    var currentPosition = new google.maps.LatLng(latitude, longitude);
+    reverseGeocoder.geocode({ 'latLng': currentPosition }, function (results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+                //return results[0].formatted_address;
+                $("#addressInput").val(results[0].formatted_address);
+                //navigator.notification.alert('Address : ' + results[0].formatted_address + ',' + 'Type : ' + results[0].types);
+            }
+            else {
+                return "";
+                //navigator.notification.alert('Unable to detect your address.');
+            }
+        } else {
+            return "";
+            //navigator.notification.alert('Unable to detect your address.');
+        }
+    });
+}
+
+function showEventsOnMap() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var coords = new google.maps.LatLng(latitude, longitude);
+
+        var mapOptions = {
+            zoom: 15,
+            center: coords,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        //create the map, and place it in the HTML map div
+        map = new google.maps.Map(
+        document.getElementById("map"), mapOptions
+        );
+
+        var eventsArray;
+
+        //load data from NodeJS and mongoDB database
+        $.ajax({
+            type: 'GET',
+            url: 'http://vasic.ddns.net/events/getevents',
+            data: "",
+            success: processEvents,
+            error: function (xhr, status, error) {
+                alert(error.message);
+            }
+        });
+
+        function processEvents(data) {
+            //parse JSON data
+            eventsArray = JSON.parse(data);
+
+            for (var i = 0; i < eventsArray.length; i++) {
+                var coords = new google.maps.LatLng(eventsArray[i].latitude, eventsArray[i].longitude);
+                var marker = new google.maps.Marker({
+                    position: coords,
+                    map: map,
+                    title: eventsArray[i].title
+                });
+            }
+        }
+    });
+}

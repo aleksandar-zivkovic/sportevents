@@ -38,13 +38,18 @@ function processEvents(data) {
     //parse JSON data
     eventsArray = JSON.parse(data);
 
-    //foreach user in users do
+    //foreach event in events do
     for (var i = 0; i < eventsArray.length; i++) {
         var entry = document.createElement('li');
         var aEntry = document.createElement('a');
-        aEntry.setAttribute("href", "/event.html?id=" + eventsArray[i]._id);
+        aEntry.setAttribute("href", "event.html?id=" + eventsArray[i]._id);
         entry.appendChild(aEntry);
         aEntry.appendChild(document.createTextNode(eventsArray[i].title));
         list.appendChild(entry);
+
+        //$(entry).click(function () {
+        //    //sessionStorage.param1 = eventsArray[i]._id;
+        //    window.location.replace("event.html");
+        //});
     }
 }

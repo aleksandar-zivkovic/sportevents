@@ -50,6 +50,8 @@ else {
     alert("Geolocation API not supported.");
 }
 
+var marker;
+
 function showCurrentLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -58,7 +60,7 @@ function showCurrentLocation(position) {
     var mapOptions = {
         zoom: 15,
         center: coords,
-        mapTypeControl: true,
+        mapTypeControl: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
@@ -67,12 +69,8 @@ function showCurrentLocation(position) {
     document.getElementById("map"), mapOptions
     );
 
-    //remove map type buttons
-    map.mapTypeControl = false;
-    //map.streetView = false;
-
     //place the initial marker
-    var marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
         position: coords,
         map: map,
         title: "This is your location!"
@@ -80,11 +78,12 @@ function showCurrentLocation(position) {
         marker.showInfoWindow();
     });
 
-    marker.addEventListener(plugin.google.maps.event.MARKER_CLICK, function () {
-        marker.showInfoWindow();
-    });
+    //marker.addEventListener(plugin.google.maps.event.MARKER_CLICK, function () {
+    //    marker.showInfoWindow();
+    //});
 
     google.maps.event.addListener(map, 'click', function (event) {
+        marker.remove = true;
 
         //swal("Success!", event.latLng, "success");
         var myLatLng = event.latLng;
@@ -93,13 +92,15 @@ function showCurrentLocation(position) {
         $("#latitudeInput").val(lat);
         $("#longitudeInput").val(lng);
 
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(lat, lon),
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lng),
             map: map,
             title: "This is event location!"
         }, function (marker) {
             marker.showInfoWindow();
         });
+
+        ReverseGeocode(lat, lng);
     });
 }
 
