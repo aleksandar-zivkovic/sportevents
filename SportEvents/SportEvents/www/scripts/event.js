@@ -7,7 +7,8 @@ $.ajax({
     data: "id=" + getParameterByName("id", window.location),
     success: parseEvent,
     error: function (xhr, status, error) {
-        swal("Error!", error, "error");
+        alert(error);
+        //swal("Error!", error, "error");
     }
 });
 
@@ -59,6 +60,7 @@ if (navigator.geolocation) {
 }
 else {
     alert("Geolocation API not supported.");
+    //swal("Error!", "Geolocation API not supported.", "error");
 }
 
 //function reverseGeocodeCurrentLocation(position) {
@@ -68,3 +70,12 @@ else {
 
 //    ReverseGeocode(latitude, longitude);
 //}
+
+
+document.getElementById('attend-btn').addEventListener('touchend', function (ev) {
+
+    var title = $("#eventTitleInput").val();
+
+    alert("You have successfully attended this event!");
+    //swal("Success!", "You have successfully attended this event!", "success");
+});

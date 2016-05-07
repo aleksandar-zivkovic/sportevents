@@ -9,6 +9,14 @@ registerBtn.addEventListener('touchend', function (ev) {
     var confirmPassword = $('#ConfirmPassword').val();
     var email = $('#Email').val();
 
+    $.ajax({
+        type: 'GET',
+        url: 'http://vasic.ddns.net/users/verify',
+        data: "username=" + username,
+        success: $('#Username_error').show(),
+        error: $('#Username_error').hide()
+    });
+
     if (username == "" | username == null) {
         swal("Warning!", "You have to enter the username!", "warning");
         $('#Username').focus();
@@ -70,3 +78,9 @@ function validate_email(email) {
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     return re.test(email);
 }
+
+$('#Username').keyup(function () {
+
+    $('#Username_error').hide();
+
+});
