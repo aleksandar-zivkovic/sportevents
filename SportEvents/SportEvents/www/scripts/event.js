@@ -7,15 +7,17 @@ $.ajax({
     data: "id=" + getParameterByName("id", window.location),
     success: parseEvent,
     error: function (xhr, status, error) {
-        alert(error);
-        //swal("Error!", error, "error");
+        swal({
+            title: "Error!",
+            text: "Error while reading event.\nMessage: " + error,
+            timer: 5000,
+            type: "error"
+        });
     }
 });
 
 function parseEvent(data) {
-    //parse JSON data
     event = JSON.parse(data);
-
     setTitle(event.title);
 
     $("#eventId").val(event._id);
@@ -24,8 +26,6 @@ function parseEvent(data) {
     $("#eventDescriptionInput").val(event.description);
     $("#dateAndTimeInput").val(event.dateandtime);
     $("#durationInput").val(event.duration);
-    //$("#latitudeInput").val(event.latitude);
-    //$("#longitudeInput").val(event.longitude);
 
     var editBtn = document.getElementById('edit-btn');
     var user = getCookie('user');
@@ -60,51 +60,32 @@ function parseEvent(data) {
         title: "Event location!"
     });
 
-    navigator.geolocation.getCurrentPosition(function (position) {
-        var latitude = position.coords.latitude;
-        var longitude = position.coords.longitude;
-        var coords = new google.maps.LatLng(latitude, longitude);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var coords = new google.maps.LatLng(latitude, longitude);
 
-        //show current location
-        var image = 'images/currentlocation.png';
-        var currentLocationMarker = new google.maps.Marker({
-            position: coords,
-            map: map,
-            icon: image,
-            title: "Current location"
+            //show current location
+            var image = 'images/currentlocation.png';
+            var currentLocationMarker = new google.maps.Marker({
+                position: coords,
+                map: map,
+                icon: image,
+                title: "Current location"
+            });
+
+            currentLocationMarker.addListener('click', function () {
+                window.location = "profile.html";
+            });
         });
-
-        currentLocationMarker.addListener('click', function () {
-            window.location = "profile.html";
+    }
+    else {
+        swal({
+            title: "Error!",
+            text: "Geolocation API not supported.",
+            timer: 5000,
+            type: "error"
         });
-    });
+    }
 }
-
-// ---------------------------------------------------------
-//                                                  MAP PART
-// ---------------------------------------------------------
-
-if (navigator.geolocation) {
-    //navigator.geolocation.getCurrentPosition(reverseGeocodeCurrentLocation);
-}
-else {
-    alert("Geolocation API not supported.");
-    //swal("Error!", "Geolocation API not supported.", "error");
-}
-
-//function reverseGeocodeCurrentLocation(position) {
-//    var latitude = position.coords.latitude;
-//    var longitude = position.coords.longitude;
-//    var coords = new google.maps.LatLng(latitude, longitude);
-
-//    ReverseGeocode(latitude, longitude);
-//}
-
-
-//document.getElementById('attend-btn').addEventListener('touchend', function (ev) {
-
-//    var title = $("#eventTitleInput").val();
-
-//    alert("You have successfully attended this event!");
-//    //swal("Success!", "You have successfully attended this event!", "success");
-//});

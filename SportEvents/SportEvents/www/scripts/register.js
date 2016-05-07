@@ -150,14 +150,11 @@ registerBtn.addEventListener('touchend', function (ev) {
 
 document.getElementById('action-bar-home-btn').style.display = 'none';
 
-
 function validate_email(email) {
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     return re.test(email);
 }
 
-$('#Username').keyup(function () {
-
-    $('#Username_error').hide();
-
-});
+//$('#Username').keyup(function () {
+//    $('#Username_error').hide();
+//});

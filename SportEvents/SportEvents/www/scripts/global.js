@@ -52,9 +52,7 @@ if (addEventBtn != null) {
 var logoutBtn = document.getElementById('logout-btn');
 if (logoutBtn != null) {
     logoutBtn.addEventListener('touchend', function (ev) {
-        //window.location = "login.html";
         setCookie("user", "", 30);
-        //location.reload();
 
         swal({
             title: "Success!",
@@ -91,26 +89,42 @@ if (editBtn != null) {
             var dateAndTime = document.getElementById("dateAndTimeInput").value;
             var duration = document.getElementById("durationInput").value;
 
-            var newEvent = {
-                "id": id,
-                "title": title,
-                "description": description,
-                "dateandtime": dateAndTime,
-                "duration": duration
-            };
+            //var newEvent = {
+            //    "id": id,
+            //    "title": title,
+            //    "description": description,
+            //    "dateandtime": dateAndTime,
+            //    "duration": duration
+            //};
 
-            var string = encodeURIComponent(JSON.stringify(newEvent));
+            //var string = encodeURIComponent(JSON.stringify(newEvent));
+
+            var stringEvent =
+                "id=" + id +
+                "&title=" + title +
+                "&description=" + description +
+                "&dateandtime=" + dateAndTime +
+                "&duration=" + duration;
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: 'http://vasic.ddns.net/events/updateevent',
-                data: string,
+                data: stringEvent,
                 success: function () {
-                    alert("You have successfully updated an event!");
+                    swal({
+                        title: "Success!",
+                        text: "You have successfully updated an event!",
+                        timer: 5000,
+                        type: "success"
+                    });
                 },
                 error: function (xhr, status, error) {
-                    //alert("An error occured: " + xhr + status + error);
-                    alert("You have successfully updated an event!");
+                    swal({
+                        title: "Error!",
+                        text: "Error while updating event.\nMessage: " + error,
+                        timer: 5000,
+                        type: "error"
+                    });
                 }
             });
         }
@@ -124,17 +138,14 @@ function ReverseGeocode(latitude, longitude) {
 
         if (status == google.maps.GeocoderStatus.OK) {
             if (results[0]) {
-                //return results[0].formatted_address;
                 $("#addressInput").val(results[0].formatted_address);
-                //navigator.notification.alert('Address : ' + results[0].formatted_address + ',' + 'Type : ' + results[0].types);
             }
             else {
                 return "";
-                //navigator.notification.alert('Unable to detect your address.');
             }
-        } else {
+        }
+        else {
             return "";
-            //navigator.notification.alert('Unable to detect your address.');
         }
     });
 }
@@ -164,14 +175,17 @@ function showEventsOnMap() {
             data: "",
             success: processEvents,
             error: function (xhr, status, error) {
-                alert(error.message);
+                swal({
+                    title: "Error!",
+                    text: "Error while reading events.\nMessage: " + error,
+                    timer: 5000,
+                    type: "error"
+                });
             }
         });
 
         var eventsArray;
-
         function processEvents(data) {
-            //parse JSON data
             eventsArray = JSON.parse(data);
 
             for (var i = 0; i < eventsArray.length; i++) {
@@ -185,7 +199,6 @@ function showEventsOnMap() {
                 });
 
                 marker.id = eventsArray[i]._id;
-
                 marker.addListener('click', function () {
                     window.location = "event.html?id=" + this.id;
                 });

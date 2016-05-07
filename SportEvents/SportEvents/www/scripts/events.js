@@ -1,8 +1,4 @@
-﻿// when you open this view, populate the list with events from mongoDB database
-
-//loadTestEvents();
-
-loadEvents();
+﻿loadEvents();
 
 //function loadTestEvents() {
 
@@ -17,9 +13,7 @@ loadEvents();
 //}
 
 function loadEvents() {
-
     var list = document.getElementById('events-list');
-
     var eventsArray;
 
     //load data from NodeJS and mongoDB database
@@ -29,16 +23,19 @@ function loadEvents() {
         data: "",
         success: processEvents,
         error: function (xhr, status, error) {
-            alert(error.message);
+            swal({
+                title: "Error!",
+                text: "Error while loading events.\nMessage: " + error,
+                timer: 5000,
+                type: "error"
+            });
         }
     });
 }
 
 function processEvents(data) {
-    //parse JSON data
     eventsArray = JSON.parse(data);
 
-    //foreach event in events do
     for (var i = 0; i < eventsArray.length; i++) {
         var entry = document.createElement('li');
         var aEntry = document.createElement('a');
@@ -46,10 +43,5 @@ function processEvents(data) {
         entry.appendChild(aEntry);
         aEntry.appendChild(document.createTextNode(eventsArray[i].title));
         list.appendChild(entry);
-
-        //$(entry).click(function () {
-        //    //sessionStorage.param1 = eventsArray[i]._id;
-        //    window.location.replace("event.html");
-        //});
     }
 }

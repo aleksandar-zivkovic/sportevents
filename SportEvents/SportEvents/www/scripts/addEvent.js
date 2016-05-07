@@ -1,15 +1,10 @@
-﻿
-document.getElementById('publish-btn').addEventListener('touchend', function (ev) {
-
+﻿document.getElementById('publish-btn').addEventListener('touchend', function (ev) {
     var title = document.getElementById('eventTitleInput').value;
     var description = document.getElementById('eventDescriptionInput').value;
-
     var e = document.getElementById('sportInput');
     var sport = e.options[e.selectedIndex].text;
-
     var dateAndTime = document.getElementById("dateAndTimeInput").value;
     var duration = document.getElementById("durationInput").value;
-
     var latitude = document.getElementById('latitudeInput').value;
     var longitude = document.getElementById('longitudeInput').value;
 
@@ -21,29 +16,48 @@ document.getElementById('publish-btn').addEventListener('touchend', function (ev
     //    error: $('#title_error').show()
     //});
 
-    var newEvent = {
-        "title": title,
-        "description": description,
-        "sport": sport,
-        "dateandtime": dateAndTime,
-        "duration": duration,
-        "latitude": latitude,
-        "longitude": longitude,
-        "createdBy": getCookie('user') 
-    };
+    //var newEvent = {
+    //    "title": title,
+    //    "description": description,
+    //    "sport": sport,
+    //    "dateandtime": dateAndTime,
+    //    "duration": duration,
+    //    "latitude": latitude,
+    //    "longitude": longitude,
+    //    "createdBy": getCookie('user') 
+    //};
 
-    var string = encodeURIComponent(JSON.stringify(newEvent));
+    //var eventString = encodeURIComponent(JSON.stringify(newEvent));
+
+    var eventString =
+        "title=" + title +
+        "&description=" + description +
+        "&sport=" + sport +
+        "&dateandtime=" + dateAndTime +
+        "&duration=" + duration +
+        "&latitude=" + latitude +
+        "&longitude=" + longitude +
+        "&createdBy=" + getCookie('user');
 
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         url: 'http://vasic.ddns.net/events/addevent',
-        data: string,
+        data: eventString,
         success: function () {
-            alert("You have successfully published an event!");
+            swal({
+                title: "Success!",
+                text: "You have successfully published an event!",
+                timer: 5000,
+                type: "success"
+            });
         },
         error: function (xhr, status, error) {
-            //alert("An error occured: " + xhr + status + error);
-            alert("You have successfully published an event!");
+            swal({
+                title: "Error!",
+                text: "Error while adding event.\nMessage: " + error,
+                timer: 5000,
+                type: "error"
+            });
         }
     });
 });
@@ -56,7 +70,12 @@ if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showCurrentLocation);
 }
 else {
-    alert("Geolocation API not supported.");
+    swal({
+        title: "Error!",
+        text: "Geolocation API not supported.",
+        timer: 5000,
+        type: "error"
+    });
 }
 
 var marker;
@@ -91,23 +110,11 @@ function showCurrentLocation(position) {
         window.location = "profile.html";
     });
 
-    //place the initial marker
-    marker = new google.maps.Marker({
-        position: coords,
-        title: "This is your location!"
-    }, function (marker) {
-        marker.showInfoWindow();
-    });
-
-    //marker.addEventListener(plugin.google.maps.event.MARKER_CLICK, function () {
-    //    marker.showInfoWindow();
-    //});
-
     google.maps.event.addListener(map, 'click', function (event) {
         //removing previous marker
-        marker.setMap(null);
+        if (marker != null)
+            marker.setMap(null);
 
-        //swal("Success!", event.latLng, "success");
         var myLatLng = event.latLng;
         var lat = myLatLng.lat();
         var lng = myLatLng.lng();
@@ -125,14 +132,3 @@ function showCurrentLocation(position) {
         ReverseGeocode(lat, lng);
     });
 }
-
-
-
-//google.maps.event.addDomListener(window, 'load', initialize);
-
-
-$('#eventTitleInput').keyup(function () {
-
-    $('#title_error').hide();
-
-});

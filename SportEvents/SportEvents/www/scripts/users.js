@@ -1,8 +1,4 @@
-﻿// when you open this view, populate the list with users from mongoDB database
-
-//loadTestUsers();
-
-loadUsers();
+﻿loadUsers();
 
 function loadTestUsers() {
 
