@@ -79,7 +79,7 @@ function showCurrentLocation(position) {
     );
 
     //show current location
-    var image = '../images/markers/currentlocation.png';
+    var image = 'images/markers/currentlocation.png';
     var currentLocationMarker = new google.maps.Marker({
         position: coords,
         map: map,

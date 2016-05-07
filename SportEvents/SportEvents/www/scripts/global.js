@@ -166,7 +166,7 @@ function showEventsOnMap() {
             eventsArray = JSON.parse(data);
 
             for (var i = 0; i < eventsArray.length; i++) {
-                var image = '../images/markers/' + eventsArray[i].sport.toLowerCase() + '.png';
+                var image = 'images/markers/' + eventsArray[i].sport.toLowerCase() + '.png';
                 var coords = new google.maps.LatLng(eventsArray[i].latitude, eventsArray[i].longitude);
                 var marker = new google.maps.Marker({
                     position: coords,
@@ -204,7 +204,7 @@ function showCurrentLocation() {
         );
 
         //show current location
-        var image = '../images/markers/currentlocation.png';
+        var image = 'images/markers/currentlocation.png';
         var currentLocationMarker = new google.maps.Marker({
             position: coords,
             map: map,

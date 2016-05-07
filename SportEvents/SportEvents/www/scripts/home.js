@@ -1,4 +1,4 @@
-﻿var canvas = document.getElementById('map');
+﻿var canvas = document.getElementById('logo');
 var ctx = canvas.getContext("2d");
 
 var image = new Image();
@@ -6,11 +6,11 @@ image.onload = function () {
     window.onresize = fitToContainer;
     fitToContainer();
 };
-image.src = "../images/Logo.png";
+image.src = "../images/logo.png";
 
 function fitToContainer() {
 
-    var div = $('#mapcontext'),
+    var div = $('#logocontext'),
         w = div.width(),
         h = div.height();
 

@@ -51,13 +51,32 @@ function parseEvent(data) {
     document.getElementById("map"), mapOptions
     );
 
-    var image = '../images/markers/' + event.sport.toLowerCase() + '.png';
+    var image = 'images/markers/' + event.sport.toLowerCase() + '.png';
     //place the initial marker
     var marker = new google.maps.Marker({
         position: coords,
         map: map,
         icon: image,
         title: "Event location!"
+    });
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var coords = new google.maps.LatLng(latitude, longitude);
+
+        //show current location
+        var image = 'images/markers/currentlocation.png';
+        var currentLocationMarker = new google.maps.Marker({
+            position: coords,
+            map: map,
+            icon: image,
+            title: "Current location"
+        });
+
+        currentLocationMarker.addListener('click', function () {
+            window.location = "profile.html";
+        });
     });
 }
 
