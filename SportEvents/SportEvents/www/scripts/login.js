@@ -7,12 +7,34 @@ document.getElementById('login-btn').addEventListener('touchend', function (ev) 
     var password = $('#Password').val();
 
     if (username == "" | username == null) {
-        swal("Error!", "You have to enter the username!", "error");
-        $('#Username').focus();
+        //swal("Error!", "You have to enter the username!", "error");
+        //$('#Username').focus();
+
+        //nešto bolje upravljanje
+        swal({
+            title: "Error!",
+            text: "You have to enter the username!",
+            type: "error"
+        }, function () {
+            setTimeout(function () {
+                $('#Username').focus();
+            }, 200);
+        });
     }
     else if (password == "" || password == null) {
-        swal("Error!", "You have to enter the password!", "error");
-        $('#Password').focus();
+        //swal("Error!", "You have to enter the password!", "error");
+        //$('#Password').focus();
+
+        //nešto bolje upravljanje
+        swal({
+            title: "Error!",
+            text: "You have to enter the password!",
+            type: "error"
+        }, function () {
+            setTimeout(function () {
+                $('#Password').focus();
+            }, 200);
+        });
     }
     else {
 
@@ -31,12 +53,35 @@ function processSuccess(data) {
     //parse JSON data
     user = JSON.parse(data);
 
-    swal("Success!", "You have successfully logged in!", "success");
     setCookie("user", user.username, 30);
-    window.location.href = "home.html";
+
+    //nešto bolje upravljanje
+    swal({
+        title: "Success!",
+        text: "You have successfully logged in!",
+        timer: 2000,
+        type: "success"
+    }, function () {
+        window.location.href = "home.html";
+    });
+
+    //swal("Success!", "You have successfully logged in!", "success");
+    //setTimeout(function () {
+    //    window.location.href = "home.html";
+    //}, 2000);
 }
 
 function processError(xhr, status, error) {
     //alert("An error occured: " + xhr + status + error);
-    swal("Error!", "Wrong username or password!", "error");
+    //swal("Error!", "Wrong username or password!", "error");
+
+    swal({
+        title: "Error!",
+        text: "Wrong username or password!",
+        type: "error"
+    }, function () {
+        setTimeout(function () {
+            $('#Username').focus();
+        }, 200);
+    });
 }

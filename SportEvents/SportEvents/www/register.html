@@ -15,31 +15,29 @@
             <script src="scripts/action-bar.js"></script>
         </div>
 
+        <div class="register-container">
+            <div class="input-container">
+                <label class="white-text">Username</label>
+                <input class="input" type="text" id="Username" name="Username" maxlength="50" required autofocus spellcheck="false">
+                <!--<div style="color: red; font-size: 9px; padding: 0px; position: absolute; margin-top: -30px; margin-left: 50px;" id="Username_error" hidden>Username already in use, please choose different one.</div>-->
+            </div>
+            <div class="input-container">
+                <label class="white-text">Password</label>
+                <input class="input" type="password" id="Password" name="Password" required>
+            </div>
+            <div class="input-container">
+                <label class="white-text">Confirm Password</label>
+                <input class="input" type="password" id="ConfirmPassword" name="ConfirmPassword" required>
+            </div>
+            <div class="input-container">
+                <label class="white-text">Email address</label>
+                <input class="input" type="text" id="Email" name="Email" maxlength="50" required spellcheck="false">
+            </div>
+            <input class="btn" type="submit" id="register-btn" value="Register">
+            <input class="btn" type="submit" id="login-btn" value="Login">
+        </div>
     </div>
-
-    <div class="register-container">
-
-        <div class="input-container">
-            <label class="white-text">Username</label>
-            <input class="input" type="text" id="Username" name="Username" maxlength="50" required autofocus spellcheck="false">
-            <div style="color: red; font-size: 9px; padding: 0px; position: absolute; margin-top: -30px; margin-left: 50px;" id="Username_error" hidden>Username already in use, please choose different one.</div>
-        </div>
-        <div class="input-container">
-            <label class="white-text">Password</label>
-            <input class="input" type="password" id="Password" name="Password" required>
-        </div>
-        <div class="input-container">
-            <label class="white-text">Confirm Password</label>
-            <input class="input" type="password" id="ConfirmPassword" name="ConfirmPassword" required>
-        </div>
-        <div class="input-container">
-            <label class="white-text">Email address</label>
-            <input class="input" type="text" id="Email" name="Email" maxlength="50" required spellcheck="false">
-        </div>
-        <input class="btn" type="submit" id="register-btn" value="Register">
-        <input class="btn" type="submit" id="login-btn" value="Login">
-    </div>
-
+    
     <script src="scripts/global.js"></script>
     <script> setTitle("Register"); </script>
     <script src="scripts/register.js"></script>

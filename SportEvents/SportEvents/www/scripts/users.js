@@ -1,8 +1,4 @@
-﻿// when you open this view, populate the list with users from mongoDB database
-
-//loadTestUsers();
-
-loadUsers();
+﻿loadUsers();
 
 function loadTestUsers() {
 
@@ -42,7 +38,7 @@ function processUsers(data) {
     for (var i = 0; i < usersArray.length; i++) {
         var entry = document.createElement('li');
         var aEntry = document.createElement('a');
-        aEntry.setAttribute("href", "/user.html?id=" + usersArray[i]._id);
+        aEntry.setAttribute("href", "user.html?id=" + usersArray[i]._id);
         entry.appendChild(aEntry);
         aEntry.appendChild(document.createTextNode(usersArray[i].username));
         list.appendChild(entry);

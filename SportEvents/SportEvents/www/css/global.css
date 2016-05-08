@@ -1,5 +1,4 @@
 ﻿html, body {
-    outline: none !important;
     width: 100%;
     height: 100%;
     margin: 0px;
@@ -17,11 +16,25 @@
 }
 
 .map {
-    height: 300px;
-    width: 300px;
-    margin: 30px;
+    height: 40%;
+    min-height: 300px;
+    width: 90%;
+    margin: 4%;
     padding: 0px;
     border: 5px solid #3872ac;
+}
+
+.map-fullscreen {
+    height: 80%;    
+    min-height: 400px;
+    width: 94%;
+    padding: 0px;
+    margin-left: 2%;
+    border: 4px solid #3872ac;
+}
+
+.hidden {
+    display: none;
 }
 
 .main-div {
@@ -30,11 +43,14 @@
 }
 
 .cont {
+    position: absolute;
     margin: 0;
+    margin-left: -3%;
     padding: 0;
-    height: 100%;
-    width: 100%;
-    display:inline-block;
+    width: 48px;
+    height: 48px;
+    display:inline-block;    
+    float: left;
 }
 
 .btn {

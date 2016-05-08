@@ -3,13 +3,19 @@
 <head>
     <title>Event</title>
     <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="addons/swal/sweetalert.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false">  </script>
+    <script src="scripts/cookies.js"></script>
+    <script src="addons/swal/sweetalert.js"></script>		
 </head>
 <body>
     <div class="main-div">
         <div class="action-bar" id="action-bar-div">
             <script src="scripts/action-bar.js"></script>
         </div>
+
+        <input id="eventId" type="hidden" />
 
         <div class="white-text text-size-20" id="sport">Sport: </div>
         <input class="input text-size-20 bottom-margin-10 center-text" type="text" id="sportInput" value="" readonly>
@@ -21,12 +27,17 @@
         <input class="input text-size-20 bottom-margin-10 center-text" type="datetime-local" id="dateAndTimeInput" readonly>
         <div class="white-text text-size-20" id="dateAndTime">Duration (min): </div>
         <input class="input text-size-20 bottom-margin-10 center-text" type="number" id="durationInput" readonly>
-        <div class="white-text text-size-20" id="latitude">Latitude: </div>
-        <input class="input text-size-20 bottom-margin-10 center-text" type="text" id="latitudeInput" value="" readonly>
-        <div class="white-text text-size-20" id="longitude"> Longitude: </div>
-        <input class="input text-size-20 bottom-margin-10 center-text" type="text" id="longitudeInput" value="" readonly>
+        <div class="white-text text-size-20" id="address">Address: </div>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="text" id="addressInput" value="" readonly>
+        <div class="white-text text-size-20" id="latitude" hidden>Latitude: </div>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="hidden" id="latitudeInput" value="" readonly>
+        <div class="white-text text-size-20" id="longitude" hidden> Longitude: </div>
+        <input class="input text-size-20 bottom-margin-10 center-text" type="hidden" id="longitudeInput" value="" readonly>
+
+        <div id="map" class="map"></div>
+
         <div class="button-container">
-            <input class="btn text-size-25" type="submit" id="attend-btn" value="Attend to event" />
+            <input class="btn text-size-25" type="submit" id="edit-btn" value="Edit event" />
         </div>
     </div>
 

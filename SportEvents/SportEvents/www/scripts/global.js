@@ -52,8 +52,190 @@ if (addEventBtn != null) {
 var logoutBtn = document.getElementById('logout-btn');
 if (logoutBtn != null) {
     logoutBtn.addEventListener('touchend', function (ev) {
-        //window.location = "login.html";
         setCookie("user", "", 30);
-        location.reload();
+
+        swal({
+            title: "Success!",
+            text: "Successfully loged out.",
+            timer: 5000,
+            type: "success"
+        }, function () {
+            window.location = "login.html";
+        });
+    });
+}
+
+var editBtn = document.getElementById('edit-btn');
+if (editBtn != null) {
+    editBtn.addEventListener('touchend', function (ev) {
+        var value = editBtn.value;
+        if (value == "Edit event") {
+            $("#edit-btn").val("Save event");
+            $("#eventTitleInput").attr('readonly', false);
+            $("#eventDescriptionInput").attr('readonly', false);
+            $("#dateAndTimeInput").attr('readonly', false);
+            $("#durationInput").attr('readonly', false);
+        }
+        else {
+            $("#edit-btn").val("Edit event");
+            $("#eventTitleInput").attr('readonly', true);
+            $("#eventDescriptionInput").attr('readonly', true);
+            $("#dateAndTimeInput").attr('readonly', true);
+            $("#durationInput").attr('readonly', true);
+            
+            var id = document.getElementById('eventId').value;
+            var title = document.getElementById('eventTitleInput').value;
+            var description = document.getElementById('eventDescriptionInput').value;
+            var dateAndTime = document.getElementById("dateAndTimeInput").value;
+            var duration = document.getElementById("durationInput").value;
+
+            //var newEvent = {
+            //    "id": id,
+            //    "title": title,
+            //    "description": description,
+            //    "dateandtime": dateAndTime,
+            //    "duration": duration
+            //};
+
+            //var string = encodeURIComponent(JSON.stringify(newEvent));
+
+            var stringEvent =
+                "id=" + id +
+                "&title=" + title +
+                "&description=" + description +
+                "&dateandtime=" + dateAndTime +
+                "&duration=" + duration;
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://vasic.ddns.net/events/updateevent',
+                data: stringEvent,
+                success: function () {
+                    swal({
+                        title: "Success!",
+                        text: "You have successfully updated an event!",
+                        timer: 5000,
+                        type: "success"
+                    });
+                },
+                error: function (xhr, status, error) {
+                    swal({
+                        title: "Error!",
+                        text: "Error while updating event.\nMessage: " + error,
+                        timer: 5000,
+                        type: "error"
+                    });
+                }
+            });
+        }
+    });
+}
+
+function ReverseGeocode(latitude, longitude) {
+    var reverseGeocoder = new google.maps.Geocoder();
+    var currentPosition = new google.maps.LatLng(latitude, longitude);
+    reverseGeocoder.geocode({ 'latLng': currentPosition }, function (results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+                $("#addressInput").val(results[0].formatted_address);
+            }
+            else {
+                return "";
+            }
+        }
+        else {
+            return "";
+        }
+    });
+}
+
+function showEventsOnMap() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var coords = new google.maps.LatLng(latitude, longitude);
+
+        var mapOptions = {
+            zoom: 15,
+            center: coords,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        //create the map, and place it in the HTML map div
+        map = new google.maps.Map(
+            document.getElementById("map"), mapOptions
+        );
+
+        //load data from NodeJS and mongoDB database
+        $.ajax({
+            type: 'GET',
+            url: 'http://vasic.ddns.net/events/getevents',
+            data: "",
+            success: processEvents,
+            error: function (xhr, status, error) {
+                swal({
+                    title: "Error!",
+                    text: "Error while reading events.\nMessage: " + error,
+                    timer: 5000,
+                    type: "error"
+                });
+            }
+        });
+
+        var eventsArray;
+        function processEvents(data) {
+            eventsArray = JSON.parse(data);
+
+            for (var i = 0; i < eventsArray.length; i++) {
+                var image = 'images/' + eventsArray[i].sport.toLowerCase() + '.png';
+                var coords = new google.maps.LatLng(eventsArray[i].latitude, eventsArray[i].longitude);
+                var marker = new google.maps.Marker({
+                    position: coords,
+                    map: map,
+                    icon: image,
+                    title: eventsArray[i].title
+                });
+
+                marker.id = eventsArray[i]._id;
+                marker.addListener('click', function () {
+                    window.location = "event.html?id=" + this.id;
+                });
+            }
+        }
+    });
+}
+
+function showCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var coords = new google.maps.LatLng(latitude, longitude);
+
+        var mapOptions = {
+            zoom: 15,
+            center: coords,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        //create the map, and place it in the HTML map div
+        map = new google.maps.Map(
+            document.getElementById("map"), mapOptions
+        );
+
+        //show current location
+        var image = 'images/currentlocation.png';
+        var currentLocationMarker = new google.maps.Marker({
+            position: coords,
+            map: map,
+            icon: image,
+            title: "Current location"
+        });
+
+        currentLocationMarker.addListener('click', function () {
+            window.location = "profile.html";
+        });
     });
 }
