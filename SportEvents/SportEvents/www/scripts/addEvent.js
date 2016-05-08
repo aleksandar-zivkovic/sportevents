@@ -19,10 +19,10 @@
             }, 200);
         });
     }
-    else if (title.length < 10) {
+    else if (title.length < 5) {
         swal({
             title: "Warning!",
-            text: "Event title must containt 10 or more characters!",
+            text: "Event title must containt 5 or more characters!",
             type: "warning"
         }, function () {
             setTimeout(function () {
@@ -41,10 +41,10 @@
             }, 200);
         });
     }
-    else if (description.length < 10) {
+    else if (description.length < 5) {
         swal({
             title: "Warning!",
-            text: "Event description must containt 10 or more characters!",
+            text: "Event description must containt 5 or more characters!",
             type: "warning"
         }, function () {
             setTimeout(function () {
