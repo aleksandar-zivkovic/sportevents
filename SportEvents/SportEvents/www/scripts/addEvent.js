@@ -8,58 +8,101 @@
     var latitude = document.getElementById('latitudeInput').value;
     var longitude = document.getElementById('longitudeInput').value;
 
-    //$.ajax({
-    //    type: 'GET',
-    //    url: 'http://vasic.ddns.net/events/verify',
-    //    data: "title=" + title,
-    //    success: $('#title_error').hide(),
-    //    error: $('#title_error').show()
-    //});
+    if (title == "" | title == null) {
+        swal({
+            title: "Warning!",
+            text: "You have to enter the event title!",
+            type: "warning"
+        }, function () {
+            setTimeout(function () {
+                $('#eventTitleInput').focus();
+            }, 200);
+        });
+    }
+    else if (title.length < 10) {
+        swal({
+            title: "Warning!",
+            text: "Event title must containt 10 or more characters!",
+            type: "warning"
+        }, function () {
+            setTimeout(function () {
+                $('#eventTitleInput').focus();
+            }, 200);
+        });
+    }
+    else if (description == "" | description == null) {
+        swal({
+            title: "Warning!",
+            text: "You have to enter the event description!",
+            type: "warning"
+        }, function () {
+            setTimeout(function () {
+                $('#eventDescriptionInput').focus();
+            }, 200);
+        });
+    }
+    else if (description.length < 10) {
+        swal({
+            title: "Warning!",
+            text: "Event description must containt 10 or more characters!",
+            type: "warning"
+        }, function () {
+            setTimeout(function () {
+                $('#eventDescriptionInput').focus();
+            }, 200);
+        });
+    }
+    else if (dateAndTime == "" | dateAndTime == null) {
+        swal({
+            title: "Warning!",
+            text: "You have to enter the event date and time!",
+            type: "warning"
+        }, function () {
+            setTimeout(function () {
+                $('#dateAndTimeInput').focus();
+            }, 200);
+        });
+    }
+    else if (latitude == "" | latitude == null | longitude == "" | longitude == null) {
+        swal({
+            title: "Warning!",
+            text: "You have to pick the event location on map!",
+            type: "warning"
+        });
+    }
+    else {
+        var eventString =
+            "title=" + title +
+            "&description=" + description +
+            "&sport=" + sport +
+            "&dateandtime=" + dateAndTime +
+            "&duration=" + duration +
+            "&latitude=" + latitude +
+            "&longitude=" + longitude +
+            "&createdBy=" + getCookie('user');
 
-    //var newEvent = {
-    //    "title": title,
-    //    "description": description,
-    //    "sport": sport,
-    //    "dateandtime": dateAndTime,
-    //    "duration": duration,
-    //    "latitude": latitude,
-    //    "longitude": longitude,
-    //    "createdBy": getCookie('user') 
-    //};
-
-    //var eventString = encodeURIComponent(JSON.stringify(newEvent));
-
-    var eventString =
-        "title=" + title +
-        "&description=" + description +
-        "&sport=" + sport +
-        "&dateandtime=" + dateAndTime +
-        "&duration=" + duration +
-        "&latitude=" + latitude +
-        "&longitude=" + longitude +
-        "&createdBy=" + getCookie('user');
-
-    $.ajax({
-        type: 'GET',
-        url: 'http://vasic.ddns.net/events/addevent',
-        data: eventString,
-        success: function () {
-            swal({
-                title: "Success!",
-                text: "You have successfully published an event!",
-                timer: 5000,
-                type: "success"
-            });
-        },
-        error: function (xhr, status, error) {
-            swal({
-                title: "Error!",
-                text: "Error while adding event.\nMessage: " + error,
-                timer: 5000,
-                type: "error"
-            });
-        }
-    });
+        $.ajax({
+            type: 'GET',
+            url: 'http://vasic.ddns.net/events/addevent',
+            data: eventString,
+            success: function () {
+                swal({
+                    title: "Success!",
+                    text: "You have successfully published an event!",
+                    timer: 5000,
+                    type: "success"
+                });
+            },
+            error: function (xhr, status, error) {
+                swal({
+                    title: "Error!",
+                    text: "Error while adding event.\nMessage: " + error,
+                    timer: 5000,
+                    type: "error"
+                });
+            }
+        });
+    }
 });
 
 // ---------------------------------------------------------
