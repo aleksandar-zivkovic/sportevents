@@ -85,12 +85,15 @@
             type: 'GET',
             url: 'http://vasic.ddns.net/events/addevent',
             data: eventString,
-            success: function () {
+            success: function (data) {
                 swal({
                     title: "Success!",
                     text: "You have successfully published an event!",
                     timer: 5000,
                     type: "success"
+                }, function () {
+                    event = JSON.parse(data);
+                    window.location = "event.html?id=" + event._id;
                 });
             },
             error: function (xhr, status, error) {

@@ -26,15 +26,19 @@ function parseEvent(data) {
     $("#eventDescriptionInput").val(event.description);
     $("#dateAndTimeInput").val(event.dateandtime);
     $("#durationInput").val(event.duration);
-    $("#createdByInput").val(event.createdBy);
-    
+    $("#createdByInput").val(event.createdBy);    
 
     var editBtn = document.getElementById('edit-btn');
+    var deleteBtn = document.getElementById('delete-btn');
     var user = getCookie('user');
-    if (user === event.createdBy)
-        editBtn.style.visibility = 'visible';
-    else
-        editBtn.style.visibility = 'hidden';
+    if (user === event.createdBy) {
+        editBtn.style.display = 'inline-block';
+        deleteBtn.style.display = 'inline-block';
+    }
+    else {
+        editBtn.style.display = 'none';
+        deleteBtn.style.display = 'none';
+    }
 
     ReverseGeocode(event.latitude, event.longitude)
 

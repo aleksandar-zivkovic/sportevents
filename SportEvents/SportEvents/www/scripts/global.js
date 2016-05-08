@@ -101,6 +101,7 @@ if (editBtn != null) {
         var value = editBtn.value;
         if (value == "Edit event") {
             $("#edit-btn").val("Save event");
+            $("#edit-btn-text").html("Save event");
             $("#eventTitleInput").attr('readonly', false);
             $("#eventDescriptionInput").attr('readonly', false);
             $("#dateAndTimeInput").attr('readonly', false);
@@ -108,6 +109,7 @@ if (editBtn != null) {
         }
         else {
             $("#edit-btn").val("Edit event");
+            $("#edit-btn-text").html("Edit event");
             $("#eventTitleInput").attr('readonly', true);
             $("#eventDescriptionInput").attr('readonly', true);
             $("#dateAndTimeInput").attr('readonly', true);
@@ -118,16 +120,6 @@ if (editBtn != null) {
             var description = document.getElementById('eventDescriptionInput').value;
             var dateAndTime = document.getElementById("dateAndTimeInput").value;
             var duration = document.getElementById("durationInput").value;
-
-            //var newEvent = {
-            //    "id": id,
-            //    "title": title,
-            //    "description": description,
-            //    "dateandtime": dateAndTime,
-            //    "duration": duration
-            //};
-
-            //var string = encodeURIComponent(JSON.stringify(newEvent));
 
             var stringEvent =
                 "id=" + id +
@@ -161,6 +153,50 @@ if (editBtn != null) {
     });
 }
 
+var deleteBtn = document.getElementById('delete-btn');
+if (deleteBtn != null) {
+    deleteBtn.addEventListener('touchend', function (ev) {
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this event!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No!",
+            closeOnConfirm: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                //ajax query to delete event
+                var id = document.getElementById('eventId').value;
+
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://vasic.ddns.net/events/deleteevent',
+                    data: "id=" + id,
+                    success: function () {
+                        swal({
+                            title: "Success!",
+                            text: "You have successfully deleted an event!",
+                            timer: 5000,
+                            type: "success"
+                        }, function () {
+                            window.location = "home.html";
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        swal({
+                            title: "Error!",
+                            text: "Error while deleting event.\nMessage: " + error,
+                            timer: 5000,
+                            type: "error"
+                        });
+                    }
+                });
+            }
+        });
+    })
+}
 function ReverseGeocode(latitude, longitude) {
     var reverseGeocoder = new google.maps.Geocoder();
     var currentPosition = new google.maps.LatLng(latitude, longitude);
@@ -262,39 +298,6 @@ function showEventsOnMap() {
         }
     });
 }
-
-//function showCurrentLocation() {
-//    navigator.geolocation.getCurrentPosition(function (position) {
-//        var latitude = position.coords.latitude;
-//        var longitude = position.coords.longitude;
-//        var coords = new google.maps.LatLng(latitude, longitude);
-
-//        var mapOptions = {
-//            zoom: 14,
-//            center: coords,
-//            mapTypeControl: false,
-//            mapTypeId: google.maps.MapTypeId.ROADMAP
-//        };
-
-//        //create the map, and place it in the HTML map div
-//        map = new google.maps.Map(
-//            document.getElementById("map"), mapOptions
-//        );
-
-//        //show current location
-//        var image = 'images/currentlocation.png';
-//        var currentLocationMarker = new google.maps.Marker({
-//            position: coords,
-//            map: map,
-//            icon: image,
-//            title: "Current location"
-//        });
-
-//        currentLocationMarker.addListener('click', function () {
-//            window.location = "profile.html";
-//        });
-//    });
-//}
 
 function showCurrentLocation(map, nearby) {
     navigator.geolocation.getCurrentPosition(function (position) {
