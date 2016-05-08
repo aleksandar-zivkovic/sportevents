@@ -263,51 +263,58 @@ function showEventsOnMap() {
     });
 }
 
-function showCurrentLocation() {
-    navigator.geolocation.getCurrentPosition(function (position) {
-        var latitude = position.coords.latitude;
-        var longitude = position.coords.longitude;
-        var coords = new google.maps.LatLng(latitude, longitude);
+//function showCurrentLocation() {
+//    navigator.geolocation.getCurrentPosition(function (position) {
+//        var latitude = position.coords.latitude;
+//        var longitude = position.coords.longitude;
+//        var coords = new google.maps.LatLng(latitude, longitude);
 
-        var mapOptions = {
-            zoom: 14,
-            center: coords,
-            mapTypeControl: false,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+//        var mapOptions = {
+//            zoom: 14,
+//            center: coords,
+//            mapTypeControl: false,
+//            mapTypeId: google.maps.MapTypeId.ROADMAP
+//        };
 
-        //create the map, and place it in the HTML map div
-        map = new google.maps.Map(
-            document.getElementById("map"), mapOptions
-        );
+//        //create the map, and place it in the HTML map div
+//        map = new google.maps.Map(
+//            document.getElementById("map"), mapOptions
+//        );
 
-        //show current location
-        var image = 'images/currentlocation.png';
-        var currentLocationMarker = new google.maps.Marker({
-            position: coords,
-            map: map,
-            icon: image,
-            title: "Current location"
-        });
+//        //show current location
+//        var image = 'images/currentlocation.png';
+//        var currentLocationMarker = new google.maps.Marker({
+//            position: coords,
+//            map: map,
+//            icon: image,
+//            title: "Current location"
+//        });
 
-        var circle = new google.maps.Circle({
-            map: map,
-            radius: 1000,
-            fillColor: '#AA0000'
-        });
-        circle.bindTo('center', currentLocationMarker, 'position');
-
-        currentLocationMarker.addListener('click', function () {
-            window.location = "profile.html";
-        });
-    });
-}
+//        currentLocationMarker.addListener('click', function () {
+//            window.location = "profile.html";
+//        });
+//    });
+//}
 
 function showCurrentLocation(map, nearby) {
     navigator.geolocation.getCurrentPosition(function (position) {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
         var coords = new google.maps.LatLng(latitude, longitude);
+
+        if (map == null) {
+            var mapOptions = {
+                zoom: 14,
+                center: coords,
+                mapTypeControl: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            //create the map, and place it in the HTML map div
+            map = new google.maps.Map(
+                document.getElementById("map"), mapOptions
+            );
+        }
         
         //show current location
         var image = 'images/currentlocation.png';
