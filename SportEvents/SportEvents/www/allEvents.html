@@ -1,12 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Events</title>
+    <title>All Events</title>
     <link rel="stylesheet" type="text/css" href="css/global.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=false">  </script>
     <script src="scripts/cookies.js"></script>
-    <script src="addons/swal/sweetalert.js"></script>			
+    <script src="addons/swal/sweetalert.js"></script>
 </head>
 <body>
     <div class="main-div">
@@ -14,14 +13,14 @@
             <script src="scripts/action-bar.js"></script>
         </div>
 
-        <div id="map" class="map-fullscreen"></div>
+        <div id="list">
+            <ul id="events-list"></ul>
+        </div>
+
     </div>
 
     <script src="scripts/global.js"></script>
-    <script>
-        setTitle("Map");
-        showEventsOnMap();
-        showCurrentLocation();
-    </script>
+    <script> setTitle("All"); </script>
+    <script src="scripts/allEvents.js"></script>
 </body>
 </html>

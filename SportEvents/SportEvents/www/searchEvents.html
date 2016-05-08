@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Events</title>
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="scripts/cookies.js"></script>
+    <script src="addons/swal/sweetalert.js"></script>
+</head>
+<body>
+    <div class="main-div">
+        <div class="action-bar" id="action-bar-div">
+            <script src="scripts/action-bar.js"></script>
+        </div>
+
+        <div class="white-text text-size-20" id="eventTitle">Sport: </div>
+        <select class="input text-size-20 bottom-margin-10 center-text" id="sportInput">
+            <option disabled selected>-- select sport --</option>
+            <option value="soccer">Soccer</option>
+            <option value="basketball">Basketball</option>
+            <option value="volleyball">Volleyball</option>
+            <option value="crossfit">Crossfit</option>
+            <option value="weightlifting">Weightlifting</option>
+            <option value="streetworkout">Street Workout</option>
+        </select>
+
+        <div class="white-text text-size-20" id="createdBy">Created by: </div>
+        <select class="input text-size-20 bottom-margin-10 center-text" id="createdByInput">
+            <option disabled selected>-- select user --</option>
+        </select>
+
+        <div id="list">
+            <ul id="events-list"></ul>
+        </div>
+
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script> setTitle("Search"); </script>
+    <script src="scripts/searchEvents.js"></script>
+</body>
+</html>
