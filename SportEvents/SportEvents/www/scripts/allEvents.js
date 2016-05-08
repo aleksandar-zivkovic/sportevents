@@ -1,17 +1,5 @@
 ﻿loadEvents();
 
-//function loadTestEvents() {
-
-//    var list = document.getElementById('events-list');
-//    var entry = document.createElement('li');
-//    var aEntry = document.createElement('a');
-//    aEntry.setAttribute("href", "#");
-//    entry.appendChild(aEntry);
-//    aEntry.appendChild(document.createTextNode("test"));
-
-//    list.appendChild(entry);
-//}
-
 function loadEvents() {
     var list = document.getElementById('events-list');
     var eventsArray;

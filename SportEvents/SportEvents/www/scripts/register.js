@@ -129,21 +129,62 @@ registerBtn.addEventListener('touchend', function (ev) {
 
             var string = encodeURIComponent(JSON.stringify(newUser));
 
+            //$.ajax({
+            //    type: 'POST',
+            //    url: 'http://vasic.ddns.net/users/adduser',
+            //    data: string,
+            //    success: function () {
+            //        swal("Success!", "You have successfully created an account!", "warning");
+            //        //alert("You have successfully created an account!");
+            //    },
+            //    error: function (xhr, status, error) {
+            //        alert("An error occured: " + xhr + status + error);
+            //        //alert("You have successfully created an account!");
+            //        //swal("Success!", "You have successfully created an account!", "warning");
+            //    }
+            //});
+            //window.location.href = "login.html";
+
+            function registerError() {
+                //swal("Warning!", "Username has already registred.\nPlease enter unique one.", "warning");
+                //$('#Username').focus();
+
+                swal({
+                    title: "Error!",
+                    text: "Error while trying to register!",
+                    type: "error"
+                }, function () {
+                    setTimeout(function () {
+                        $('#Username').focus();
+                    }, 200);
+
+                });
+            }
+
+            function registerSuccess() {
+                //swal("Warning!", "Username has already registred.\nPlease enter unique one.", "warning");
+                //$('#Username').focus();
+
+                swal({
+                    title: "Success!",
+                    text: "You have successfully created an account!",
+                    type: "success"
+                }, function () {
+                    setTimeout(function () {
+                        $('#Username').focus();
+                    }, 200);
+                    window.location.href = "login.html";
+                });
+            }
+
             $.ajax({
-                type: 'POST',
-                url: 'http://vasic.ddns.net/users/adduser',
-                data: string,
-                success: function () {
-                    swal("Success!", "You have successfully created an account!", "warning");
-                    //alert("You have successfully created an account!");
-                },
-                error: function (xhr, status, error) {
-                    //alert("An error occured: " + xhr + status + error);
-                    //alert("You have successfully created an account!");
-                    swal("Success!", "You have successfully created an account!", "warning");
-                }
+                type: 'GET',
+                url: 'http://vasic.ddns.net/users/adduserget',
+                data: "username=" + username + "&password=" + password + "&email=" + email,
+                success: registerSuccess,
+                error: registerError
             });
-            window.location.href = "login.html";
+            
         }        
     }
 });

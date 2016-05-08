@@ -26,6 +26,8 @@ function parseEvent(data) {
     $("#eventDescriptionInput").val(event.description);
     $("#dateAndTimeInput").val(event.dateandtime);
     $("#durationInput").val(event.duration);
+    $("#createdByInput").val(event.createdBy);
+    
 
     var editBtn = document.getElementById('edit-btn');
     var user = getCookie('user');

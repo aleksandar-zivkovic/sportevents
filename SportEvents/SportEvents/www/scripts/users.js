@@ -1,17 +1,5 @@
 ﻿loadUsers();
 
-function loadTestUsers() {
-
-    var list = document.getElementById('users-list');
-    var entry = document.createElement('li');
-    var aEntry = document.createElement('a');
-    aEntry.setAttribute("href", "#");
-    entry.appendChild(aEntry);
-    aEntry.appendChild(document.createTextNode("test"));
-
-    list.appendChild(entry);
-}
-
 function loadUsers() {
 
     var list = document.getElementById('users-list');
@@ -25,7 +13,12 @@ function loadUsers() {
         data: "",
         success: processUsers,
         error: function (xhr, status, error) {
-            alert(error.message);
+            swal({
+                title: "Error!",
+                text: "Error while loading users.\nMessage: " + error,
+                timer: 5000,
+                type: "error"
+            });
         }
     });
 }

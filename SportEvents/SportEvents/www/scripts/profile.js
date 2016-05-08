@@ -30,8 +30,8 @@ function onSuccess(position) {
 }
 
 function onError(error) {
-    alert('code: ' + error.code + '\n' +
-            'message: ' + error.message + '\n');
+    //alert('code: ' + error.code + '\n' +
+    //        'message: ' + error.message + '\n');
 
     swal({
         title: "Error!",
