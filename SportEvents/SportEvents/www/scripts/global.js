@@ -14,6 +14,36 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+//google.maps.LatLng.prototype.distanceFrom = function (latlng) {
+//    var lat = [this.lat(), latlng.lat()]
+//    var lng = [this.lng(), latlng.lng()]
+//    var R = 6378137;
+//    var dLat = (lat[1] - lat[0]) * Math.PI / 180;
+//    var dLng = (lng[1] - lng[0]) * Math.PI / 180;
+//    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+//    Math.cos(lat[0] * Math.PI / 180) * Math.cos(lat[1] * Math.PI / 180) *
+//    Math.sin(dLng / 2) * Math.sin(dLng / 2);
+//    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//    var d = R * c;
+//    return Math.round(d);
+//}
+
+var rad = function (x) {
+    return x * Math.PI / 180;
+};
+
+var getDistance = function (p1, p2) {
+    var R = 6378137; // Earth’s mean radius in meter
+    var dLat = rad(p2.lat() - p1.lat());
+    var dLong = rad(p2.lng() - p1.lng());
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+      Math.sin(dLong / 2) * Math.sin(dLong / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    return d; // returns the distance in meter
+};
+
 var backBtn = document.getElementById('back-btn');
 if (backBtn != null) {
     backBtn.addEventListener('touchend', function (ev) {
@@ -152,13 +182,24 @@ function ReverseGeocode(latitude, longitude) {
 
 function showEventsOnMap() {
     navigator.geolocation.getCurrentPosition(function (position) {
+        var nearby;
+        if (getParameterByName("nearby", window.location) === "true")
+            nearby = true;
+        else
+            nearby = false;
+
+        if (nearby)
+            setTitle("Nearby");
+        else
+            setTitle("Map view");
+
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
-        var coords = new google.maps.LatLng(latitude, longitude);
+        var currentCoords = new google.maps.LatLng(latitude, longitude);
 
         var mapOptions = {
-            zoom: 15,
-            center: coords,
+            zoom: 14,
+            center: currentCoords,
             mapTypeControl: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
@@ -191,18 +232,33 @@ function showEventsOnMap() {
             for (var i = 0; i < eventsArray.length; i++) {
                 var image = 'images/' + eventsArray[i].sport.toLowerCase() + '.png';
                 var coords = new google.maps.LatLng(eventsArray[i].latitude, eventsArray[i].longitude);
-                var marker = new google.maps.Marker({
-                    position: coords,
-                    map: map,
-                    icon: image,
-                    title: eventsArray[i].title
-                });
+                //var distance = currentCoords.distanceFrom(coords);
+                var show;
+                if (!nearby)
+                    show = true;
+                else {
+                    var distance = getDistance(currentCoords, coords);
+                    if (distance < 1000)
+                        show = true;
+                    else
+                        show = false;
+                }
+                if (show) {
+                    var marker = new google.maps.Marker({
+                        position: coords,
+                        map: map,
+                        icon: image,
+                        title: eventsArray[i].title
+                    });
 
-                marker.id = eventsArray[i]._id;
-                marker.addListener('click', function () {
-                    window.location = "event.html?id=" + this.id;
-                });
+                    marker.id = eventsArray[i]._id;
+                    marker.addListener('click', function () {
+                        window.location = "event.html?id=" + this.id;
+                    });
+                }
             }
+
+            showCurrentLocation(map, nearby);
         }
     });
 }
@@ -214,7 +270,7 @@ function showCurrentLocation() {
         var coords = new google.maps.LatLng(latitude, longitude);
 
         var mapOptions = {
-            zoom: 15,
+            zoom: 14,
             center: coords,
             mapTypeControl: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -233,6 +289,43 @@ function showCurrentLocation() {
             icon: image,
             title: "Current location"
         });
+
+        var circle = new google.maps.Circle({
+            map: map,
+            radius: 1000,
+            fillColor: '#AA0000'
+        });
+        circle.bindTo('center', currentLocationMarker, 'position');
+
+        currentLocationMarker.addListener('click', function () {
+            window.location = "profile.html";
+        });
+    });
+}
+
+function showCurrentLocation(map, nearby) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var coords = new google.maps.LatLng(latitude, longitude);
+        
+        //show current location
+        var image = 'images/currentlocation.png';
+        var currentLocationMarker = new google.maps.Marker({
+            position: coords,
+            map: map,
+            icon: image,
+            title: "Current location"
+        });
+
+        if (nearby) {
+            var circle = new google.maps.Circle({
+                map: map,
+                radius: 1000,
+                fillColor: '#AA0000'
+            });
+            circle.bindTo('center', currentLocationMarker, 'position');
+        }
 
         currentLocationMarker.addListener('click', function () {
             window.location = "profile.html";
