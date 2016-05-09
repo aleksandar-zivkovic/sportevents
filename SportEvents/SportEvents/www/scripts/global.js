@@ -389,6 +389,8 @@ socket.on('message', function (data) {
                 text: "New event " + newEvent.title + " is published and it is near you! Go check it out!",
                 timer: 5000,
                 type: "success"
+            }, function () {
+                window.location = "event.html?id=" + newEvent._id;
             });
         }
     });
