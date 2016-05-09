@@ -274,7 +274,7 @@ function showEventsOnMap() {
                     show = true;
                 else {
                     var distance = getDistance(currentCoords, coords);
-                    if (distance < 1000)
+                    if (distance < 5000)
                         show = true;
                     else
                         show = false;
@@ -331,7 +331,7 @@ function showCurrentLocation(map, nearby) {
         if (nearby) {
             var circle = new google.maps.Circle({
                 map: map,
-                radius: 1000,
+                radius: 5000,
                 fillColor: '#AA0000'
             });
             circle.bindTo('center', currentLocationMarker, 'position');
@@ -342,3 +342,72 @@ function showCurrentLocation(map, nearby) {
         });
     });
 }
+
+////////////////////////////////////////
+/// Async communication (Web Socket) ///
+////////////////////////////////////////
+
+//// Create a socket instance
+
+var socket = io.connect('http://vasic.ddns.net:8080');
+
+socket.connect();
+
+// Add a connect listener
+socket.on('connect', function () {
+    //swal({
+    //    title: "Success!",
+    //    text: "Client has connected to the server!",
+    //    timer: 2000,
+    //    type: "success"
+    //});
+});
+// Add a connect listener
+socket.on('message', function (data) {
+    //swal({
+    //    title: "Success!",
+    //    text: "Received a message from the server:  " + data,
+    //    timer: 2000,
+    //    type: "success"
+    //});
+
+    //var newEvent = JSON.parse(data);
+    var newEvent = data;
+    var coords = new google.maps.LatLng(newEvent.latitude, newEvent.longitude);
+    var latitude, longitude;
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        var currentCoords = new google.maps.LatLng(latitude, longitude);
+
+        var distance = getDistance(currentCoords, coords);
+
+        if (distance < 5000) {
+            swal({
+                title: "Success!",
+                text: "New event " + newEvent.title + " is published and it is near you! Go check it out!",
+                timer: 5000,
+                type: "success"
+            });
+        }
+    });
+
+ 
+
+});
+// Add a disconnect listener
+socket.on('disconnect', function () {
+    //swal({
+    //    title: "Success!",
+    //    text: "The client has disconnected!",
+    //    timer: 2000,
+    //    type: "success"
+    //});
+});
+
+//// Sends a message to the server via sockets
+//function sendMessageToServer(message) {
+//    socket.send(message);
+//    alert('<span style="color:#888">Sending "' + message + '" to the server!</span>');
+//}
